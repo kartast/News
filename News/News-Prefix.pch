@@ -15,3 +15,10 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
 #endif
+
+#import <objc/runtime.h>
+#import <objc/message.h>
+
+#ifdef DEBUG
+#define BLog(formatString, ...) NSLog((@"%s " formatString), __PRETTY_FUNCTION__, ##__VA_ARGS__);
+#endif

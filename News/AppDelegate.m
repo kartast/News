@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SimpleTableViewController.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Add simpleTableViewController
+    {
+        SimpleTableViewController *simpleTableVC = [[SimpleTableViewController alloc] init];
+        UINavigationController *simpleNavVC = [[UINavigationController alloc] initWithRootViewController:simpleTableVC];
+        [self.window addSubview:simpleNavVC.view];
+        [self.window setRootViewController:simpleNavVC];
+        NSLog(@"%@", [self managedObjectContext]);
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -64,6 +75,16 @@
         } 
     }
 }
+#pragma mark - Background downloader
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)())completionHandler
+{
+    /*
+        Store the completion handler, to be called when all task has been finished
+     */
+	self.backgroundSessionCompletionHandler = completionHandler;
+}
+
 
 #pragma mark - Core Data stack
 
@@ -80,6 +101,12 @@
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
+    
+    // observe the ParseOperation's save operation with its managed object context
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(mergeChanges:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:nil];
     return _managedObjectContext;
 }
 
@@ -136,6 +163,21 @@
     }    
     
     return _persistentStoreCoordinator;
+}
+
+// merge changes to main context,fetchedRequestController will automatically monitor the changes and update tableview.
+- (void)updateMainContext:(NSNotification *)notification {
+    
+    assert([NSThread isMainThread]);
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+}
+
+// this is called via observing "NSManagedObjectContextDidSaveNotification" from our APLParseOperation
+- (void)mergeChanges:(NSNotification *)notification {
+    
+    if (notification.object != self.managedObjectContext) {
+        [self performSelectorOnMainThread:@selector(updateMainContext:) withObject:notification waitUntilDone:NO];
+    }
 }
 
 #pragma mark - Application's Documents directory

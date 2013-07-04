@@ -10,6 +10,7 @@
 #import "FeedBinAPI.h"
 #import "Channel.h"
 #import "AppDelegate.h"
+#import "SimpleEntriesListViewController.h"
 
 @interface SimpleTableViewController ()
 
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     
     [self setupFetchResultsController];
+    
     // Do any additional setup after loading the view from its nib.
     [self startFetchFeeds];
 }
@@ -60,7 +62,9 @@
     
     NSError *error;
     BOOL success = [fetchResultsController performFetch:&error];
-    NSLog(@"error:%@", error);
+    if (!success || error) {
+        NSLog(@"error:%@", error);
+    }
 }
 
 - (void)startFetchFeeds {
@@ -94,6 +98,13 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Channel *channel = [fetchResultsController objectAtIndexPath:indexPath];
+    SimpleEntriesListViewController *entryListVC = [[SimpleEntriesListViewController alloc] initWithNibName:@"SimpleEntriesListViewController" bundle:nil];
+    entryListVC.channel = channel;
+    [self.navigationController pushViewController:entryListVC animated:YES];
 }
 
 #pragma mark Memory warning

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7322353178539F10031D5FD /* SimpleEntriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7322351178539F10031D5FD /* SimpleEntriesListViewController.m */; };
+		C7322354178539F10031D5FD /* SimpleEntriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7322352178539F10031D5FD /* SimpleEntriesListViewController.xib */; };
 		C762EC2017814C5700AF734E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762EC1F17814C5700AF734E /* Foundation.framework */; };
 		C762EC2217814C5700AF734E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762EC2117814C5700AF734E /* CoreGraphics.framework */; };
 		C762EC2417814C5700AF734E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762EC2317814C5700AF734E /* UIKit.framework */; };
@@ -49,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7322350178539F10031D5FD /* SimpleEntriesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleEntriesListViewController.h; sourceTree = "<group>"; };
+		C7322351178539F10031D5FD /* SimpleEntriesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleEntriesListViewController.m; sourceTree = "<group>"; };
+		C7322352178539F10031D5FD /* SimpleEntriesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleEntriesListViewController.xib; sourceTree = "<group>"; };
 		C762EC1C17814C5700AF734E /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C762EC1F17814C5700AF734E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C762EC2117814C5700AF734E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -171,6 +176,9 @@
 				C762EC57178168A300AF734E /* SimpleTableViewController.h */,
 				C762EC58178168A300AF734E /* SimpleTableViewController.m */,
 				C762EC59178168A300AF734E /* SimpleTableViewController.xib */,
+				C7322350178539F10031D5FD /* SimpleEntriesListViewController.h */,
+				C7322351178539F10031D5FD /* SimpleEntriesListViewController.m */,
+				C7322352178539F10031D5FD /* SimpleEntriesListViewController.xib */,
 				C762EC3617814C5700AF734E /* Images.xcassets */,
 				C762EC3317814C5700AF734E /* News.xcdatamodeld */,
 				C7EA190A1782D2180008D816 /* Item.h */,
@@ -307,6 +315,7 @@
 				C762EC5B178168A300AF734E /* SimpleTableViewController.xib in Resources */,
 				C762EC2C17814C5700AF734E /* InfoPlist.strings in Resources */,
 				C762EC3717814C5700AF734E /* Images.xcassets in Resources */,
+				C7322354178539F10031D5FD /* SimpleEntriesListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +345,7 @@
 				C7EA18FB1782BAAB0008D816 /* ISO8601DateFormatter.m in Sources */,
 				C7EA19031782C9A10008D816 /* ParseOperation.m in Sources */,
 				C7EA18FD1782BAAB0008D816 /* NSObject+JL_KeyPathIntrospection.m in Sources */,
+				C7322353178539F10031D5FD /* SimpleEntriesListViewController.m in Sources */,
 				C762EC5A178168A300AF734E /* SimpleTableViewController.m in Sources */,
 				C762EC5617815C8800AF734E /* FeedBinAPI.m in Sources */,
 				C7EA19061782CB2F0008D816 /* ParseEntryOperation.m in Sources */,

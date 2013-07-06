@@ -8,6 +8,7 @@
 
 #import "FeedSyncManager.h"
 #import "FeedBinAPI.h"
+#import "CoreDataHelper.h"
 
 @implementation FeedSyncManager
 
@@ -52,7 +53,13 @@
     /*
         Finish Syncing Feeds and Entries
         Start to process articles - Get summary and images
+        ?How to decide which one first?
+        ?By the order of displaying the feeds
      */
+    
+    CoreDataHelper *cdHelper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
+    NSArray *array = [cdHelper fetchFeedsGroupedByTags];
+    NSLog(@"%@", array);
 }
 
 @end

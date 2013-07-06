@@ -16,4 +16,5 @@ static NSString *kSyncFeedsEntriesDone         = @"SyncFeedsEntriesDone";
 }
 
 + (id)sharedManager;
+- (void)startSync;
 @end

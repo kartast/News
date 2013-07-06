@@ -15,6 +15,7 @@
 #import "ParseSubscriptionOperation.h"
 #import "ParseEntryOperation.h"
 #import "ParseTagOperation.h"
+#import "FeedSyncManager.h"
 
 #define API_POINT_FEEDBIN   @"https://api.feedbin.me/v2"
 #define API_SUBSCRIPTIONS   @"subscriptions.json"
@@ -97,6 +98,15 @@
 }
 
 - (void)fetchEntriesDone:(NSNotification *)note {
+    NSDictionary *dict = [note userInfo];
+    BOOL bSuccessFail = [[dict objectForKey:kFetchResultBOOL] boolValue];
+    if (bSuccessFail) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSyncFeedsEntriesDone
+                                                            object:nil
+                                                          userInfo:nil];
+    } else {
+//        [self startFetchFeeds];
+    }
     
 }
 

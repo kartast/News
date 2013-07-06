@@ -88,4 +88,20 @@
     }
     return [fetchedItems objectAtIndex:0];
 }
+
+- (NSArray *)fetchFeedsGroupedByTags {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityChannel = [NSEntityDescription entityForName:@"Channel" inManagedObjectContext:self.managedObjectContext];
+
+    [fetchRequest setEntity:entityChannel];
+    
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Error: %@", error);
+        return nil;
+    }
+    return result;
+}
+
 @end

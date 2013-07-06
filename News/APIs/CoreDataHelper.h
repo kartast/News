@@ -23,4 +23,5 @@
 - (NSManagedObject *)findRecordForEntityName:(NSString *)entityName
                                   byProperty:(NSString *)propertyName
                                    withValue:(id)value;
+- (NSArray *)fetchFeedsGroupedByTags;
 @end

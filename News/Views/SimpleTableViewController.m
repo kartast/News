@@ -68,7 +68,7 @@
 }
 
 - (void)startFetchFeeds {
-    [[FeedSyncManager sharedManager] startFetchFeeds];
+    [[FeedSyncManager sharedManager] startSync];
 }
 
 #pragma mark - UITableView delegate

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-static NSString *kFetchSubscriptionsDone          = @"kFetchSubscriptionsDone";
-static NSString *kFetchEntriessDone               = @"kFetchEntriessDone";
-static NSString *kFetchResultBOOL                 = @"kFetchResultBOOL";
-static NSString *kParserManagedObjectContext      = @"kParserManagedObjectContext";
+static NSString *kFetchSubscriptionsDone            = @"kFetchSubscriptionsDone";
+static NSString *kFetchEntriessDone                 = @"kFetchEntriessDone";
+static NSString *kFetchTagsDone                     = @"kFetchTagsDone";
+static NSString *kFetchResultBOOL                   = @"kFetchResultBOOL";
+static NSString *kParserManagedObjectContext        = @"kParserManagedObjectContext";
 
 @interface FeedBinAPI : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDownloadDelegate>
 @property (nonatomic, strong) NSString *userName;

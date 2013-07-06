@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class FeedBinAPI;
+
 @interface SimpleTableViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>{
-    FeedBinAPI *apiManager;
     NSFetchedResultsController *fetchResultsController;
 }
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

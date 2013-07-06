@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * stringID;
+@property (nonatomic, retain) NSString * channelCategory;
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSNumber * guid;
 @property (nonatomic, retain) NSOrderedSet *items;

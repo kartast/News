@@ -27,6 +27,10 @@
         }
         
         NSData *jsonData = [NSData dataWithContentsOfFile:[self.fileURL path]];
+        if (!jsonData) {
+            [self sendNotificationSuccess:NO];
+            return;
+        }
         NSError *error;
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
@@ -80,9 +84,19 @@
     if ([self.coreDataHelper.managedObjectContext hasChanges]) {
         if (![self.coreDataHelper.managedObjectContext save:&error]) {
             // save fail
-            NSLog(@"save fail");
+            NSLog(@"save Entries fail");
+            return;
         }
     }
     
+    NSLog(@"save Entries ok");
+    
+}
+
+- (void)sendNotificationSuccess:(BOOL)bYesNo {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFetchEntriessDone
+                                                        object:nil
+                                                      userInfo:@{kFetchResultBOOL: [NSNumber numberWithBool:bYesNo],
+                                                                 kParserManagedObjectContext: self.coreDataHelper.managedObjectContext}];
 }
 @end

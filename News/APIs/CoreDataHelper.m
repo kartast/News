@@ -15,18 +15,21 @@
 
 - (id)initWithNewContextInCurrentThread {
     if (self = [super init]) {
+        
         AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         _PSC = appdelegate.persistentStoreCoordinator;
         
         // create new context
         self.managedObjectContext = [[NSManagedObjectContext alloc] init];
         self.managedObjectContext.persistentStoreCoordinator = _PSC;
+        NSLog(@"Create new context:%@ in thread:%@", self.managedObjectContext, [NSThread currentThread]);
     }
     return self;
 }
 
 - (id)initWithExistingContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
+         NSLog(@"Using existing context:%@ ",context);
         AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         _PSC = appdelegate.persistentStoreCoordinator;
         

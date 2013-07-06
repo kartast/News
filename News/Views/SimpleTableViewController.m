@@ -7,7 +7,7 @@
 //
 
 #import "SimpleTableViewController.h"
-#import "FeedBinAPI.h"
+#import "FeedSyncManager.h"
 #import "Channel.h"
 #import "AppDelegate.h"
 #import "SimpleEntriesListViewController.h"
@@ -68,11 +68,7 @@
 }
 
 - (void)startFetchFeeds {
-    if (!apiManager) {
-        apiManager = [[FeedBinAPI alloc] initWithUserName:@"kartasutanto@gmail.com"
-                                              andPassword:@"asd12345"];
-    }
-    [apiManager startFetchFeeds];
+    [[FeedSyncManager sharedManager] startFetchFeeds];
 }
 
 #pragma mark - UITableView delegate

@@ -19,11 +19,13 @@
 // -------------------------------------------------------------------------------
 - (void)main {
     if (![self isCancelled] && self.fileURL != nil) {
-//        self.managedObjectContext = [[NSManagedObjectContext alloc] init];
-//        self.managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
         coreDataHelper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
         
         NSData *jsonData = [NSData dataWithContentsOfFile:[self.fileURL path]];
+        if (!jsonData) {
+            [self sendNotificationSuccess:NO];
+            return;
+        }
         NSError *error;
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
@@ -60,18 +62,19 @@
         if (![self.coreDataHelper.managedObjectContext save:&error]) {
             // save fail
             NSLog(@"save fail");
-            [[NSNotificationCenter defaultCenter] postNotificationName:kFetchSubscriptionsDone
-                                                                object:nil
-                                                              userInfo:@{kFetchResultBOOL: @NO,
-                                                                         kParserManagedObjectContext: self.coreDataHelper.managedObjectContext}];
+            [self sendNotificationSuccess:NO];
             return;
         }
     }
+    [self sendNotificationSuccess:YES];
     
+    NSLog(@"save ok");
+}
+
+- (void)sendNotificationSuccess:(BOOL)bYesNo {
     [[NSNotificationCenter defaultCenter] postNotificationName:kFetchSubscriptionsDone
                                                         object:nil
-                                                      userInfo:@{kFetchResultBOOL: @YES,
+                                                      userInfo:@{kFetchResultBOOL: [NSNumber numberWithBool:bYesNo],
                                                                  kParserManagedObjectContext: self.coreDataHelper.managedObjectContext}];
-    NSLog(@"save ok");
 }
 @end

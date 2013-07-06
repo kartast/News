@@ -24,5 +24,6 @@
 @dynamic guid;
 @dynamic items;
 @dynamic tags;
+@dynamic channelCategory;
 
 @end

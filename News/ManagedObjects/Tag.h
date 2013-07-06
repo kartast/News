@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSNumber * tagID;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *channels;
+
+@property (nonatomic, retain) NSNumber *feedID;
 @end
 
 @interface Tag (CoreDataGeneratedAccessors)

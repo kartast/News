@@ -15,5 +15,6 @@
 @dynamic tagID;
 @dynamic name;
 @dynamic channels;
+@synthesize feedID;
 
 @end

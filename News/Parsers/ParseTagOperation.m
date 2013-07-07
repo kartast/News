@@ -64,6 +64,7 @@
 }
 
 - (void)clearTags {
+    // TODO: New implementation, instead of clear all, only remove the one not inside
     NSFetchRequest *fetchAllTags = [[NSFetchRequest alloc] init];
     NSEntityDescription *ent = [NSEntityDescription entityForName:@"Tag"
                                            inManagedObjectContext:self.coreDataHelper.managedObjectContext];

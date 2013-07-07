@@ -37,7 +37,7 @@
     // TODO: make sure dont double sync
     if (!feedBinAPIManager) {
         feedBinAPIManager = [[FeedBinAPI alloc] initWithUserName:@"kartasutanto@gmail.com"
-                                              andPassword:@"asd12345"];
+                                                     andPassword:@"asd12345"];
     }
     [feedBinAPIManager startFetchFeeds];
     
@@ -60,6 +60,19 @@
     CoreDataHelper *cdHelper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
     NSArray *array = [cdHelper fetchFeedsGroupedByTags];
     NSLog(@"%@", array);
+}
+
+#pragma mark -- Display List (the main page)
+
+- (void)validateDisplayListWithSyncedData {
+    /*
+        Remove any tags not in database,
+        Remove any feeds not in database,
+        Append new tags just added,
+        Append new feeds just added,
+        Update existing tags name,
+        Update existing feeds name
+     */
 }
 
 @end

@@ -5,8 +5,7 @@
 //  Created by karta sutanto on 1/7/13.
 //  Copyright (c) 2013 karta sutanto. All rights reserved.
 //
-//  TODO:
-//  To test on fetch from background make sure call completion handler
+//  TODO:  To test on fetch from background make sure call completion handler
 
 
 #import "DiffBotAPI.h"

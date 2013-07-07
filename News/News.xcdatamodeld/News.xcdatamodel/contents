@@ -11,8 +11,15 @@
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stringID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="displayList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DisplayList" inverseName="feed" inverseEntity="DisplayList" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="channel" inverseEntity="Item" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="channels" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="DisplayList" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="feed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="displayList" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="dispalyList" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,11 +53,13 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tagID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="channels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Channel" inverseName="tags" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="dispalyList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DisplayList" inverseName="tag" inverseEntity="DisplayList" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Channel" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="Item" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="Tag" positionX="0" positionY="0" width="128" height="88"/>
-        <element name="ItemDetail" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Channel" positionX="-767" positionY="-156" width="128" height="210"/>
+        <element name="Item" positionX="-522" positionY="144" width="128" height="225"/>
+        <element name="ItemDetail" positionX="-299" positionY="-81" width="128" height="195"/>
+        <element name="Tag" positionX="-1089" positionY="263" width="128" height="88"/>
+        <element name="DisplayList" positionX="-693" positionY="108" width="128" height="58"/>
     </elements>
 </model>

@@ -44,4 +44,15 @@
 - (void)addTags:(NSSet *)values;
 - (void)removeTags:(NSSet *)values;
 
++ (id)channelWithURL:(NSString *)feed_url
+               title:(NSString *)title
+           createdAt:(NSDate *)created_at
+                link:(NSString *)site_url
+              syncID:(NSNumber *)syncID
+           inContext:(NSManagedObjectContext *) context
+        shouldInsert:(NSNumber *)bShouldInsert;
+
++ (NSArray *)importFromArray:(NSArray *)arrayOfDicts
+                   inContext:(NSManagedObjectContext *)context
+                shouldInsert:(NSNumber *)bShouldInsert;
 @end

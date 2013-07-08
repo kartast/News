@@ -164,7 +164,7 @@
             /*
              If we were launched via the application:handleEventsForBackgroundURLSession:completionHandler delegate, invoke the completion handler now
              */
-			NSLog(@"All tasks are finished");
+			DLog(@"All tasks are finished");
 			AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
 			if (appDelegate.backgroundSessionCompletionHandler) {
@@ -265,11 +265,11 @@
     
     if (error == nil)
     {
-        NSLog(@"Task: %@ completed successfully", task);
+        DLog(@"Task: %@ completed successfully", task);
     }
     else
     {
-        NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
+        DLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
     }
 	
 //    double progress = (double)task.countOfBytesReceived / (double)task.countOfBytesExpectedToReceive;

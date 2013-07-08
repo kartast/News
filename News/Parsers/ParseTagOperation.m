@@ -54,12 +54,12 @@
     if ([self.coreDataHelper.managedObjectContext hasChanges]) {
         if (![self.coreDataHelper.managedObjectContext save:&error]) {
             // save fail
-            NSLog(@"save tags fail");
+            ALog(@"save tags fail");
             [self sendNotificationSuccess:NO];
             return;
         }
     }
-    NSLog(@"save tags ok");
+    DLog(@"save tags ok");
     [self sendNotificationSuccess:YES];
 }
 

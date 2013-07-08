@@ -12,4 +12,7 @@
 @interface ParseSubscriptionOperation : ParseOperation {
     NSMutableArray *channels;
 }
+
+- (void)parseAndImportFromFeedBinSubscriptionsJSON:(NSString *)json
+                                         inContext:(NSManagedObjectContext *)ctx;
 @end

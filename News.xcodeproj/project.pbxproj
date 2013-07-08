@@ -21,7 +21,12 @@
 		C762EC4017814C5700AF734E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762EC2317814C5700AF734E /* UIKit.framework */; };
 		C762EC4117814C5700AF734E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C762EC2517814C5700AF734E /* CoreData.framework */; };
 		C762EC4917814C5700AF734E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C762EC4717814C5700AF734E /* InfoPlist.strings */; };
-		C762EC4B17814C5700AF734E /* NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C762EC4A17814C5700AF734E /* NewsTests.m */; };
+		C771B65D178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = C771B65C178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.m */; };
+		C771B65F178A70D2007ADA69 /* ChannelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C771B65E178A70D2007ADA69 /* ChannelTest.m */; };
+		C771B663178A7CA2007ADA69 /* feedbinSubscriptions72.json in Resources */ = {isa = PBXBuildFile; fileRef = C771B662178A7C9A007ADA69 /* feedbinSubscriptions72.json */; };
+		C771B666178A7ECC007ADA69 /* ParserFeedbin.m in Sources */ = {isa = PBXBuildFile; fileRef = C771B665178A7ECC007ADA69 /* ParserFeedbin.m */; };
+		C771B667178A7ECC007ADA69 /* ParserFeedbin.m in Sources */ = {isa = PBXBuildFile; fileRef = C771B665178A7ECC007ADA69 /* ParserFeedbin.m */; };
+		C771B669178A7FF2007ADA69 /* ParserFeedbinTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C771B668178A7FF2007ADA69 /* ParserFeedbinTest.m */; };
 		C7E3CA50178859BB0044FADE /* FeedSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3CA4F178859BB0044FADE /* FeedSyncManager.m */; };
 		C7EA18FB1782BAAB0008D816 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA18F61782BAAB0008D816 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C7EA18FC1782BAAB0008D816 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA18F81782BAAB0008D816 /* NSData+Base64.m */; };
@@ -72,7 +77,13 @@
 		C762EC3D17814C5700AF734E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C762EC4617814C5700AF734E /* NewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NewsTests-Info.plist"; sourceTree = "<group>"; };
 		C762EC4817814C5700AF734E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C762EC4A17814C5700AF734E /* NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTests.m; sourceTree = "<group>"; };
+		C771B65B178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext-EasyFetch.h"; sourceTree = "<group>"; };
+		C771B65C178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext-EasyFetch.m"; sourceTree = "<group>"; };
+		C771B65E178A70D2007ADA69 /* ChannelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelTest.m; sourceTree = "<group>"; };
+		C771B662178A7C9A007ADA69 /* feedbinSubscriptions72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = feedbinSubscriptions72.json; sourceTree = "<group>"; };
+		C771B664178A7ECC007ADA69 /* ParserFeedbin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFeedbin.h; sourceTree = "<group>"; };
+		C771B665178A7ECC007ADA69 /* ParserFeedbin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFeedbin.m; sourceTree = "<group>"; };
+		C771B668178A7FF2007ADA69 /* ParserFeedbinTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFeedbinTest.m; sourceTree = "<group>"; };
 		C7E3CA4E178859BB0044FADE /* FeedSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSyncManager.h; sourceTree = "<group>"; };
 		C7E3CA4F178859BB0044FADE /* FeedSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSyncManager.m; sourceTree = "<group>"; };
 		C7EA18F51782BAAB0008D816 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
@@ -144,7 +155,6 @@
 			children = (
 				C762EC2717814C5700AF734E /* News */,
 				C762EC4417814C5700AF734E /* NewsTests */,
-				C762EC1E17814C5700AF734E /* Frameworks */,
 				C762EC1D17814C5700AF734E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 				C762EC3D17814C5700AF734E /* XCTest.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		C762EC2717814C5700AF734E /* News */ = {
@@ -200,7 +211,10 @@
 		C762EC4417814C5700AF734E /* NewsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C762EC4A17814C5700AF734E /* NewsTests.m */,
+				C771B662178A7C9A007ADA69 /* feedbinSubscriptions72.json */,
+				C771B65E178A70D2007ADA69 /* ChannelTest.m */,
+				C771B668178A7FF2007ADA69 /* ParserFeedbinTest.m */,
+				C762EC1E17814C5700AF734E /* Frameworks */,
 				C762EC4517814C5700AF734E /* Supporting Files */,
 			);
 			path = NewsTests;
@@ -218,6 +232,8 @@
 		C7EA18F41782BAAB0008D816 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C771B65B178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.h */,
+				C771B65C178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.m */,
 				C7EA18F51782BAAB0008D816 /* ISO8601DateFormatter.h */,
 				C7EA18F61782BAAB0008D816 /* ISO8601DateFormatter.m */,
 				C7EA18F71782BAAB0008D816 /* NSData+Base64.h */,
@@ -256,6 +272,8 @@
 				C7EA52AE1786894800E1304C /* ParseEntryOperation.m */,
 				C7EA52B11786894800E1304C /* ParseSubscriptionOperation.h */,
 				C7EA52B21786894800E1304C /* ParseSubscriptionOperation.m */,
+				C771B664178A7ECC007ADA69 /* ParserFeedbin.h */,
+				C771B665178A7ECC007ADA69 /* ParserFeedbin.m */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -375,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C771B663178A7CA2007ADA69 /* feedbinSubscriptions72.json in Resources */,
 				C762EC4917814C5700AF734E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,12 +405,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C771B65D178A54D5007ADA69 /* NSManagedObjectContext-EasyFetch.m in Sources */,
 				C7EA52D21786C41C00E1304C /* Item.m in Sources */,
 				C7EA52CF17868B5700E1304C /* Tag.m in Sources */,
 				C7EA52C11786894800E1304C /* SimpleTableViewController.m in Sources */,
 				C7E3CA50178859BB0044FADE /* FeedSyncManager.m in Sources */,
 				C7EA52BC1786894800E1304C /* ParseEntryOperation.m in Sources */,
 				C7EA52D81786C4ED00E1304C /* DiffBotAPI.m in Sources */,
+				C771B666178A7ECC007ADA69 /* ParserFeedbin.m in Sources */,
 				C7EA18FC1782BAAB0008D816 /* NSData+Base64.m in Sources */,
 				C7EA52D51786C41C00E1304C /* ItemDetail.m in Sources */,
 				C7EA52BB1786894800E1304C /* FeedBinAPI.m in Sources */,
@@ -414,7 +435,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C762EC4B17814C5700AF734E /* NewsTests.m in Sources */,
+				C771B669178A7FF2007ADA69 /* ParserFeedbinTest.m in Sources */,
+				C771B667178A7ECC007ADA69 /* ParserFeedbin.m in Sources */,
+				C771B65F178A70D2007ADA69 /* ChannelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

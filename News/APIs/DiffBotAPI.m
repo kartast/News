@@ -157,11 +157,11 @@
     
     if (error == nil)
     {
-        NSLog(@"Task: %@ completed successfully", task);
+        DLog(@"Task: %@ completed successfully", task);
     }
     else
     {
-        NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
+        DLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
     }
 	
 //    double progress = (double)task.countOfBytesReceived / (double)task.countOfBytesExpectedToReceive;

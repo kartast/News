@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "NSObject+JL_KeyPathIntrospection.h"
 #import "ISO8601DateFormatter.h"
+#import "ParserFeedbin.h"
 
 @implementation ParseSubscriptionOperation
 
@@ -42,6 +43,27 @@
     }
 }
 
+- (void)parseAndImportFromFeedBinSubscriptionsJSON:(NSString *)json
+                                         inContext:(NSManagedObjectContext *)ctx {
+    
+    NSArray *parsedResults = [ParserFeedbin parseSubscriptionsJSON:json];
+    NSArray *importedChannels = [Channel importFromArray:parsedResults
+                                               inContext:ctx
+                                            shouldInsert:@YES];
+    DLog(@"imported %d channels", [importedChannels count]);
+    if ([ctx hasChanges]) {
+        NSError *saveError = nil;
+        if (![ctx save:&saveError]) {
+            ALog(@"save fail: %@", saveError);
+            [self sendNotificationSuccess:NO];
+            return;
+        }
+    }
+    [self sendNotificationSuccess:YES];
+    
+    
+}
+
 - (void)addChannelToCoreData:(NSArray*)channelsArray{
     
     /*
@@ -61,20 +83,19 @@
     if ([self.coreDataHelper.managedObjectContext hasChanges]) {
         if (![self.coreDataHelper.managedObjectContext save:&error]) {
             // save fail
-            NSLog(@"save fail");
+            ALog(@"save fail");
             [self sendNotificationSuccess:NO];
             return;
         }
     }
     [self sendNotificationSuccess:YES];
     
-    NSLog(@"save ok");
+    DLog(@"save ok");
 }
 
 - (void)sendNotificationSuccess:(BOOL)bYesNo {
     [[NSNotificationCenter defaultCenter] postNotificationName:kFetchSubscriptionsDone
                                                         object:nil
-                                                      userInfo:@{kFetchResultBOOL: [NSNumber numberWithBool:bYesNo],
-                                                                 kParserManagedObjectContext: self.coreDataHelper.managedObjectContext}];
+                                                      userInfo:@{kFetchResultBOOL: [NSNumber numberWithBool:bYesNo]}];
 }
 @end

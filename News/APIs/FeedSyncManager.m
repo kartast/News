@@ -59,7 +59,7 @@
     
     CoreDataHelper *cdHelper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
     NSArray *array = [cdHelper fetchFeedsGroupedByTags];
-    NSLog(@"%@", array);
+    DLog(@"%@", array);
 }
 
 #pragma mark -- Display List (the main page)

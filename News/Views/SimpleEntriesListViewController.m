@@ -70,7 +70,7 @@
     NSError *error;
     BOOL success = [fetchResultsController performFetch:&error];
     if (!success || error) {
-        NSLog(@"error:%@", error);
+        ALog(@"error:%@", error);
     }
 }
 

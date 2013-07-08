@@ -22,14 +22,14 @@
         // create new context
         self.managedObjectContext = [[NSManagedObjectContext alloc] init];
         self.managedObjectContext.persistentStoreCoordinator = _PSC;
-        NSLog(@"Create new context:%@ in thread:%@", self.managedObjectContext, [NSThread currentThread]);
+        DLog(@"Create new context:%@ in thread:%@", self.managedObjectContext, [NSThread currentThread]);
     }
     return self;
 }
 
 - (id)initWithExistingContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
-         NSLog(@"Using existing context:%@ ",context);
+         DLog(@"Using existing context:%@ ",context);
         AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         _PSC = appdelegate.persistentStoreCoordinator;
         
@@ -98,7 +98,7 @@
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"Error: %@", error);
+        DLog(@"Error: %@", error);
         return nil;
     }
     return result;

@@ -17,6 +17,10 @@
 
 - (id)initWithNewContextInCurrentThread;
 - (id)initWithExistingContext:(NSManagedObjectContext *)context;
++ (id)defaultContext;
+- (id)mainContext;
++ (NSManagedObjectContext *)newContextInCurrentThread;
+
 - (BOOL)isRecordExistForEntityName:(NSString *)entityName
                         byProperty:(NSString *)propertyName
                          withValue:(id)value;

@@ -103,7 +103,7 @@
         
         // Find the channel that this tags describe
         Channel *channel = (Channel *)[self.coreDataHelper findRecordForEntityName:@"Channel"
-                                                                        byProperty:@"feedID"
+                                                                        byProperty:@"guid"
                                                                          withValue:tag.feedID];
         if (channel == nil) {continue;}
         

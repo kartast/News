@@ -15,16 +15,18 @@
 
 @property (nonatomic, retain) NSString * feedDescription;
 @property (nonatomic, retain) NSString * feedURL;
-@property (nonatomic, retain) NSNumber * feedID;
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * stringID;
 @property (nonatomic, retain) NSString * channelCategory;
 @property (nonatomic, retain) NSDate * createdAt;
-@property (nonatomic, retain) NSNumber * guid;
+@property (nonatomic, retain) NSDate * updatedAt;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSOrderedSet *items;
 @property (nonatomic, retain) NSSet *tags;
+@property (nonatomic, retain) NSString *author;
+@property (nonatomic, retain) NSString *iconURL;
 @end
 
 @interface Channel (CoreDataGeneratedAccessors)
@@ -48,11 +50,27 @@
                title:(NSString *)title
            createdAt:(NSDate *)created_at
                 link:(NSString *)site_url
-              syncID:(NSNumber *)syncID
+              syncID:(NSString *)syncID
            inContext:(NSManagedObjectContext *) context
         shouldInsert:(NSNumber *)bShouldInsert;
+
++ (id)channelWithURL:(NSString *)feed_url
+           inContext:(NSManagedObjectContext *)context
+        shouldInsert:(NSNumber *)bShouldInsert;
+
++ (id)findChannelWithFeedID:(NSNumber *)feed_id;
 
 + (NSArray *)importFromArray:(NSArray *)arrayOfDicts
                    inContext:(NSManagedObjectContext *)context
                 shouldInsert:(NSNumber *)bShouldInsert;
+
++ (NSArray *)deleteChannelsExceptFor:(NSArray *)receivedFeedIDs
+                           inContext:(NSManagedObjectContext *)context;
+
++ (void)deleteChannelWithURL:(NSString *)url inContext:(NSManagedObjectContext *)context;
+
+- (void)addCategory:(NSString *)categoryString
+          inContext:(NSManagedObjectContext *)context;
+- (void)removeCategory:(NSString *)categoryString
+             inContext:(NSManagedObjectContext *)context;
 @end

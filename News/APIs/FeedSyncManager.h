@@ -10,10 +10,19 @@
 
 static NSString *kSyncFeedsEntriesDone         = @"SyncFeedsEntriesDone";
 
+enum FeedSyncType {
+    FeedSyncTypeRSS = 0,
+    FeedSyncTypeFeedbin
+};
+typedef enum FeedSyncType FeedSyncType;
+
 @class FeedBinAPI;
 @interface FeedSyncManager : NSObject {
     FeedBinAPI *feedBinAPIManager;
+    FeedSyncType syncType;
 }
+
+@property (nonatomic, readwrite) FeedSyncType syncType;
 
 + (id)sharedManager;
 - (void)startSync;

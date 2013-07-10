@@ -13,6 +13,6 @@
     NSMutableArray *channels;
 }
 
-- (void)parseAndImportFromFeedBinSubscriptionsJSON:(NSString *)json
-                                         inContext:(NSManagedObjectContext *)ctx;
+- (void)parseAndSyncFromFeedBinSubscriptionsJSON:(NSString *)json
+                                       inContext:(NSManagedObjectContext *)ctx;
 @end

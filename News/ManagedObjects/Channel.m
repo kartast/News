@@ -1,4 +1,4 @@
-//
+ //
 //  Channel.m
 //  News
 //
@@ -14,7 +14,6 @@
 
 @dynamic feedDescription;
 @dynamic feedURL;
-@dynamic feedID;
 @dynamic imageURL;
 @dynamic link;
 @dynamic title;
@@ -24,12 +23,37 @@
 @dynamic items;
 @dynamic tags;
 @dynamic channelCategory;
+@dynamic author;
+@dynamic iconURL;
+@dynamic updatedAt;
+
++ (id)channelWithURL:(NSString *)feed_url
+           inContext:(NSManagedObjectContext *)context
+        shouldInsert:(NSNumber *)bShouldInsert {
+    /*
+     Create new channel if not already exist
+     */
+    NSArray *array = [context fetchObjectsForEntityName:@"Channel"
+                                    predicateWithFormat:@"feedURL = %@", feed_url];
+    Channel *channel;
+    if ([array count] > 0) {
+        channel = [array objectAtIndex:0];
+    }else {
+        // Create new
+        NSEntityDescription *ent = [NSEntityDescription entityForName:@"Channel"
+                                               inManagedObjectContext:context];
+        channel = [[Channel alloc] initWithEntity:ent
+                   insertIntoManagedObjectContext:([bShouldInsert boolValue] ? context : nil)];
+        [channel setFeedURL:feed_url];
+    }
+    return  channel;
+}
 
 + (id)channelWithURL:(NSString *)feed_url
                title:(NSString *)title
            createdAt:(NSDate *)created_at
                 link:(NSString *)site_url
-              syncID:(NSNumber *)syncID
+              syncID:(NSString *)syncID
            inContext:(NSManagedObjectContext *) context
         shouldInsert:(NSNumber *)bShouldInsert {
     /*
@@ -53,7 +77,8 @@
         [channel setTitle:title];
         [channel setCreatedAt:created_at];
         [channel setLink:site_url];
-        [channel setGuid:(syncID ? syncID : @-1)];
+        NSString *guid = [NSString stringWithFormat:@"%@",(syncID ? syncID : @-1)];
+        [channel setGuid:guid];
     }
     return  channel;
 }
@@ -80,13 +105,77 @@
                                           title:title
                                       createdAt:created_at
                                            link:site_url
-                                         syncID:syncID
+                                         syncID:[NSString stringWithFormat:@"%@", syncID]
                                       inContext:context
                                    shouldInsert:bShouldInsert];
         [resultArray addObject:channel];
     }
     
     return resultArray;
+}
+
++ (void)deleteChannelWithURL:(NSString *)url inContext:(NSManagedObjectContext *)context {
+    NSArray *array = [context fetchObjectsForEntityName:@"Channel"
+                                    predicateWithFormat:@"feedURL = %@", url];
+    if ([array count] >0) {
+        Channel *channel = [array objectAtIndex:0];
+        [context deleteObject:channel];
+    }
+}
+
+/*
+ For syncing, delete the channels not returned by server
+ */
++ (NSArray *)deleteChannelsExceptFor:(NSArray *)receivedFeedIDs
+                           inContext:(NSManagedObjectContext *)context {
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (guid IN %@)", receivedFeedIDs];
+    NSArray *channelsToBeDeleted = [context fetchObjectsForEntityName:@"Channel" withPredicate:predicate];
+    for (Channel *channel in channelsToBeDeleted) {
+        [channel willBeDeleted];
+        [context deleteObject:channel];
+    }
+    
+    return [context fetchObjectsForEntityName:@"Channel"];
+}
+
+- (void)addCategory:(NSString *)categoryString
+          inContext:(NSManagedObjectContext *)context {
+    
+    Tag *tag = [Tag TagForCategoryName:categoryString
+                             inContext:context
+                          shouldInsert:YES];
+    
+    [self addTagsObject:tag];
+    
+    NSError *error;
+    [context save:&error];
+    if (error) {
+        ALog(@"save error");
+    }
+}
+
+- (void)removeCategory:(NSString *)categoryString
+             inContext:(NSManagedObjectContext *)context {
+    [self.tags enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        Tag *tag = (Tag *)obj;
+        if ([tag.name isEqualToString:categoryString]) {
+            [self removeTagsObject:tag];
+            *stop = YES;
+        }
+    }];
+    
+    if ([context hasChanges]) {
+        NSError *error;
+        [context save:&error];
+        if (error) {
+            ALog(@"save error");
+        }
+    }
+}
+
+- (void)willBeDeleted {
+    //TODO: handle delettion, like clean up tags and entries
 }
 
 // TODO: isChannelReady?

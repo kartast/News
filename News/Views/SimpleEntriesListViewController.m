@@ -56,14 +56,14 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"feedID = %@", channel.feedID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"guid = %@", channel.guid];
     [fetchRequest setPredicate:predicate];
     
     fetchResultsController = [[NSFetchedResultsController alloc]
                               initWithFetchRequest:fetchRequest
                               managedObjectContext:context
                               sectionNameKeyPath:nil
-                              cacheName:[NSString stringWithFormat:@"feedID = %@", channel.feedID]];
+                              cacheName:[NSString stringWithFormat:@"guid = %@", channel.guid]];
     
     fetchResultsController.delegate=self;
     

@@ -11,6 +11,9 @@
 #import "Channel.h"
 #import "AppDelegate.h"
 #import "SimpleEntriesListViewController.h"
+#import "RSSFeedManager.h"
+#import "CoreDataHelper.h"
+#import "DiffBotAPIManager.h"
 
 @interface SimpleTableViewController ()
 
@@ -56,7 +59,7 @@
                               initWithFetchRequest:fetchRequest
                               managedObjectContext:context
                               sectionNameKeyPath:nil
-                              cacheName:@"channel_cache"];
+                              cacheName:nil];
 
     fetchResultsController.delegate=self;
     
@@ -101,6 +104,17 @@
     SimpleEntriesListViewController *entryListVC = [[SimpleEntriesListViewController alloc] initWithNibName:@"SimpleEntriesListViewController" bundle:nil];
     entryListVC.channel = channel;
     [self.navigationController pushViewController:entryListVC animated:YES];
+}
+
+#pragma buttons
+- (IBAction)addTestFeed:(id)sender {
+    
+//    [[RSSFeedManager sharedManager] addFeedByURL:@"http://daringfireball.net/index.xml"
+//                                    withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
+//
+//                                    } inContext:[CoreDataHelper newContextInCurrentThread]];
+    NSArray *urls = @[@"http://appleinsider.com/articles/13/07/10/yahoo-updates-mail-app-with-multi-login-support-tumblr-with-refined-search"];
+    [[DiffBotAPIManager sharedManager] addURLsToAnalyze:urls];
 }
 
 #pragma mark Memory warning

@@ -37,3 +37,10 @@
 #ifdef DEBUG
 #define BLog(formatString, ...) NSLog((@"%s " formatString), __PRETTY_FUNCTION__, ##__VA_ARGS__);
 #endif
+
+// For testint async
+#define ASYNC_LOCK_INIT() NSConditionLock * conditionLock = [NSConditionLock new]
+#define ASYNC_LOCK_HERE() [conditionLock lockWhenCondition:1]
+#define ASYNC_LOCK_DONE() [conditionLock unlockWithCondition:1]
+
+#define TESTASYNC   1

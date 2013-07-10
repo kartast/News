@@ -10,8 +10,13 @@
 
 @interface ParserFeedbin : NSObject
 + (NSArray *)parseSubscriptionsJSON:(NSString *)jsonString;
++ (NSDictionary *)parseTagsJSON:(NSString *)jsonString;
+
++ (void)syncTagsJSONWithCoreDataForDict:(NSDictionary *)dict
+                              inContext:(NSManagedObjectContext *)context;
 
 + (NSDictionary *)mappingForSubscriptions;
 + (NSDictionary *)mappingForEntries;
 + (NSDictionary *)mappingForTags;
+
 @end

@@ -13,6 +13,26 @@
 @synthesize PSC = _PSC;
 @synthesize managedObjectContext;
 
+- (id)mainContext {
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return [appDelegate managedObjectContext];
+}
+
++ (id)defaultContext {
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return [appDelegate managedObjectContext];
+}
+
++ (NSManagedObjectContext *)newContextInCurrentThread {
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSPersistentStoreCoordinator *psc = appdelegate.persistentStoreCoordinator;
+    
+    // create new context
+    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
+    managedObjectContext.persistentStoreCoordinator = psc;
+    return managedObjectContext;
+}
+
 - (id)initWithNewContextInCurrentThread {
     if (self = [super init]) {
         

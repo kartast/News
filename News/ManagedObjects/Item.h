@@ -18,14 +18,18 @@
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSString * enclosure;
 @property (nonatomic, retain) NSNumber * feedID;
-@property (nonatomic, retain) NSNumber * guid;
-@property (nonatomic, retain) NSString * itemDescription;
+@property (nonatomic, retain) NSString * guid;
+@property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSDate * pubDate;
-@property (nonatomic, retain) NSString * summary;
+@property (nonatomic, retain) NSString * itemDescription;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * unread;
 @property (nonatomic, retain) Channel *channel;
 @property (nonatomic, retain) NSManagedObject *itemDetail;
+
++ (id)itemWithUID:(NSString *)uid
+        inContext:(NSManagedObjectContext *)context
+     shouldInsert:(NSNumber *)bShouldInsert;
 
 @end

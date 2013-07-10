@@ -13,7 +13,7 @@
 
 @interface Tag : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * tagID;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *channels;
 
@@ -27,4 +27,22 @@
 - (void)addChannels:(NSSet *)values;
 - (void)removeChannels:(NSSet *)values;
 
+// Custom methods
+- (BOOL)hasFeedID:(NSNumber *)feed_id;
+
++ (id)TagForCategoryName:(NSString *)name
+               inContext:(NSManagedObjectContext *)ctx
+            shouldInsert:(BOOL)bShouldInsert;
+
++ (void)deleteTagWithName:(NSString *)name
+              inContext:(NSManagedObjectContext *)ctx;
+
+/*
+    TagName
+        -> feedID1
+        -> feedID2
+ */
++ (void)importFromDictionary:(NSDictionary *)dict
+         shouldRemoveTheRest:(BOOL)bShouldDelete
+                   inContext:(NSManagedObjectContext *)context;
 @end

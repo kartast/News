@@ -20,8 +20,17 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * html;
 @property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) id media;
+@property (nonatomic, retain) NSString * summary;
 @property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * resolvedURL;
 @property (nonatomic, retain) Item *item;
+@property (nonatomic) BOOL isValid;
 
++ (id)itemDetailForURL:(NSString *)url
+             inContext:(NSManagedObjectContext *)context
+          shouldInsert:(NSNumber *)bShouldInsert;
+
++ (id)itemDetailFromResponseDict:(NSDictionary *)dict
+                       inContext:(NSManagedObjectContext *)context
+                    shouldInsert:(NSNumber *)bShouldInsert;
 @end

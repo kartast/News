@@ -15,16 +15,18 @@
 
 @implementation ParserFeedbinTest
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
 }
 
-- (void)tearDown
-{
+- (void)tearDown {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
+}
+
+- (void)parseImportSubscriptionsFromFile {
+    
 }
 
 - (void)testParseSubscriptionsJSON {
@@ -48,6 +50,21 @@
     NSManagedObject *managedObject = [parsedResults objectAtIndex:0];
     id createdAt = [managedObject valueForKey:@"createdAt"];
     XCTAssertTrue([createdAt isKindOfClass:[NSDate class]], @"created at property is not of type date");
+}
+
+- (void)testParseTagsJSON {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]]
+                          pathForResource:@"feedbinTaggings"
+                          ofType:@"json"];
+    NSError *error = nil;
+    NSString *sampleTaggingsJSON = [NSString stringWithContentsOfFile:filePath
+                                                             encoding:NSUTF8StringEncoding
+                                                                error:&error];
+    XCTAssertNil(error, @"load sample string from file fail");
+    XCTAssertNotNil(sampleTaggingsJSON, @"load sample string from file fail");
+    
+    NSDictionary *tagsDict = [ParserFeedbin parseTagsJSON:sampleTaggingsJSON];
+    XCTAssertTrue([tagsDict count] > 0, @"parsingJSON fail");
 }
 
 @end

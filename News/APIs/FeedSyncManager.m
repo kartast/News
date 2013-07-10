@@ -9,8 +9,10 @@
 #import "FeedSyncManager.h"
 #import "FeedBinAPI.h"
 #import "CoreDataHelper.h"
+#import "RSSFeedManager.h"
 
 @implementation FeedSyncManager
+@synthesize syncType;
 
 + (id)sharedManager {
     static FeedSyncManager *sharedMyManager = nil;
@@ -23,7 +25,7 @@
 
 - (id)init {
     if (self = [super init]) {
-
+        syncType = FeedSyncTypeRSS;
     }
     return self;
 }
@@ -35,11 +37,25 @@
 #pragma mark -- Sync stuffs
 - (void)startSync {
     // TODO: make sure dont double sync
-    if (!feedBinAPIManager) {
-        feedBinAPIManager = [[FeedBinAPI alloc] initWithUserName:@"kartasutanto@gmail.com"
-                                                     andPassword:@"asd12345"];
+    switch (syncType) {
+        case FeedSyncTypeRSS:
+        {
+            [[RSSFeedManager sharedManager] fetchLatestEntries];
+        }
+            break;
+        case FeedSyncTypeFeedbin:
+        {
+            if (!feedBinAPIManager) {
+                feedBinAPIManager = [[FeedBinAPI alloc] initWithUserName:@"kartasutanto@gmail.com"
+                                                             andPassword:@"asd12345"];
+            }
+            [feedBinAPIManager startFetchFeeds];
+        }
+            break;
+        default:
+            break;
     }
-    [feedBinAPIManager startFetchFeeds];
+    
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self

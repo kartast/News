@@ -303,10 +303,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 #pragma API MAPPING
 - (NSDictionary *)mappingForSubscriptions {
-    return @{@"feed_id": @"feedID",
-             @"created_at": @"createdAt",
+    return @{@"created_at": @"createdAt",
              @"title": @"title",
-             @"id": @"guid",
+             @"feed_id": @"guid",
              @"feed_url": @"feedURL",
              @"site_url": @"link"};
 }
@@ -324,7 +323,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 - (NSDictionary *)mappingForTags {
-    return @{@"id": @"tagID",
+    return @{@"id": @"guid",
              @"feed_id": @"feedID",
              @"name": @"name"};
 }

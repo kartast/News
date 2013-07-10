@@ -43,14 +43,27 @@
     }
 }
 
-- (void)parseAndImportFromFeedBinSubscriptionsJSON:(NSString *)json
-                                         inContext:(NSManagedObjectContext *)ctx {
+- (void)parseAndSyncFromFeedBinSubscriptionsJSON:(NSString *)json
+                                       inContext:(NSManagedObjectContext *)ctx {
     
     NSArray *parsedResults = [ParserFeedbin parseSubscriptionsJSON:json];
     NSArray *importedChannels = [Channel importFromArray:parsedResults
                                                inContext:ctx
                                             shouldInsert:@YES];
+    
     DLog(@"imported %d channels", [importedChannels count]);
+    
+    // Remove the ones not in the server
+    NSMutableArray *receivedFeedIDs = [[NSMutableArray alloc] init];
+    for (NSDictionary *channelDict in parsedResults) {
+        [receivedFeedIDs addObject:[channelDict objectForKey:@"guid"]];
+    }
+    
+    NSArray *syncedChannels = [Channel deleteChannelsExceptFor:(NSArray *)receivedFeedIDs
+                                                     inContext:ctx];
+    
+    DLog(@"Synced %d channels", [syncedChannels count]);
+    
     if ([ctx hasChanges]) {
         NSError *saveError = nil;
         if (![ctx save:&saveError]) {

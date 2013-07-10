@@ -81,7 +81,14 @@
         else if (class == [NSString class]) {
             // Handle String
             
-            NSString *string = [entry objectForKey:key];
+            // KARTA: this allows conversion from number to string if needed
+            id value = [entry objectForKey:key];
+            NSString *string;
+            if ([value isKindOfClass:[NSString class]]) {
+                string = (NSString *)value;
+            }else {
+                string = [NSString stringWithFormat:@"%@",[entry objectForKey:key]];
+            }
             if ([string length] > 0) {
                 [channel setValue:string forKey:propertyName];
             }

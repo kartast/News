@@ -59,7 +59,7 @@
         else if (propertyClass == [NSString class]) {
             // Handle String
             
-            NSString *string = [sourceDict objectForKey:key];
+            NSString *string = [NSString stringWithFormat:@"%@", [sourceDict objectForKey:key]];
             if ([string length] > 0) {
                 [targetDict setValue:string forKey:propertyName];
             }

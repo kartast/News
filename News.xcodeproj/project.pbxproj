@@ -64,6 +64,8 @@
 		C79A241D178BDB7A00CB7E92 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A2401178BCBD300CB7E92 /* RSSParser.m */; };
 		C7ADE8A2178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADE8A0178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m */; };
 		C7ADE8A3178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ADE8A1178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib */; };
+		C7ADE8A6178EC6F200B48793 /* MediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */; };
+		C7ADE8A9178ECBFB00B48793 /* ItemDetailFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADE8A8178ECBFA00B48793 /* ItemDetailFetcher.m */; };
 		C7E06652178D4AB600F44490 /* CoreDataRelationshipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E06650178D4AA200F44490 /* CoreDataRelationshipTest.m */; };
 		C7E3CA50178859BB0044FADE /* FeedSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3CA4F178859BB0044FADE /* FeedSyncManager.m */; };
 		C7EA18FB1782BAAB0008D816 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7EA18F61782BAAB0008D816 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -168,6 +170,10 @@
 		C7ADE89F178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFeedsQueryPickerViewController.h; sourceTree = "<group>"; };
 		C7ADE8A0178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFeedsQueryPickerViewController.m; sourceTree = "<group>"; };
 		C7ADE8A1178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleFeedsQueryPickerViewController.xib; sourceTree = "<group>"; };
+		C7ADE8A4178EC6F200B48793 /* MediaFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFetcher.h; sourceTree = "<group>"; };
+		C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFetcher.m; sourceTree = "<group>"; };
+		C7ADE8A7178ECBFA00B48793 /* ItemDetailFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailFetcher.h; sourceTree = "<group>"; };
+		C7ADE8A8178ECBFA00B48793 /* ItemDetailFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailFetcher.m; sourceTree = "<group>"; };
 		C7E06650178D4AA200F44490 /* CoreDataRelationshipTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataRelationshipTest.m; sourceTree = "<group>"; };
 		C7E3CA4E178859BB0044FADE /* FeedSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSyncManager.h; sourceTree = "<group>"; };
 		C7E3CA4F178859BB0044FADE /* FeedSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSyncManager.m; sourceTree = "<group>"; };
@@ -276,6 +282,10 @@
 				C762EC3617814C5700AF734E /* Images.xcassets */,
 				C7EA18F41782BAAB0008D816 /* ThirdParty */,
 				C762EC2817814C5700AF734E /* Supporting Files */,
+				C7ADE8A4178EC6F200B48793 /* MediaFetcher.h */,
+				C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */,
+				C7ADE8A7178ECBFA00B48793 /* ItemDetailFetcher.h */,
+				C7ADE8A8178ECBFA00B48793 /* ItemDetailFetcher.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -569,6 +579,7 @@
 				C71C8D26178D9A0B0079978F /* GoogleFeedsAPI.m in Sources */,
 				C7EA52D21786C41C00E1304C /* Item.m in Sources */,
 				C7EA52CF17868B5700E1304C /* Tag.m in Sources */,
+				C7ADE8A9178ECBFB00B48793 /* ItemDetailFetcher.m in Sources */,
 				C7EA52C11786894800E1304C /* SimpleTableViewController.m in Sources */,
 				C7ADE8A2178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m in Sources */,
 				C79A2409178BCBD300CB7E92 /* RSSEntry.m in Sources */,
@@ -581,6 +592,7 @@
 				C7EA52D51786C41C00E1304C /* ItemDetail.m in Sources */,
 				C7EA52BB1786894800E1304C /* FeedBinAPI.m in Sources */,
 				C762EC3217814C5700AF734E /* AppDelegate.m in Sources */,
+				C7ADE8A6178EC6F200B48793 /* MediaFetcher.m in Sources */,
 				C7EA52BD1786894800E1304C /* ParseOperation.m in Sources */,
 				C7EA19001782BB8D0008D816 /* NSString+Base64.m in Sources */,
 				C7EA52BE1786894800E1304C /* ParseSubscriptionOperation.m in Sources */,

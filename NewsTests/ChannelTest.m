@@ -84,7 +84,7 @@
                                   shouldInsert:@YES];
     
     NSArray *channelFetched = [ctx fetchObjectsForEntityName:@"Channel"
-                                         predicateWithFormat:@"guid = %@", @50];
+                                         predicateWithFormat:@"guid = %@", @"50"];
 
     XCTAssertTrue([channelFetched count] == 1,
                   @"channel in context is not exactly 1 after first import");
@@ -100,7 +100,7 @@
     XCTAssertNotNil(channel, @"Fail to import existing channel");
     
     channelFetched = [ctx fetchObjectsForEntityName:@"Channel"
-                                predicateWithFormat:@"guid = %@", @50];
+                                predicateWithFormat:@"guid = %@", @"50"];
     
     XCTAssertTrue([channelFetched count] == 1,
                   @"channel in context is not exactly 1 after import existing");

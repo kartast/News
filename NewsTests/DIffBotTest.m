@@ -30,10 +30,7 @@
 #if TESTASYNC
 - (void)testExample
 {
-    ASYNC_LOCK_INIT();
-    NSArray *urls = @[@"http://df4.us/lj9", @"http://df4.us/lc"];
-    [[DiffBotAPIManager sharedManager] addURLsToAnalyze:urls];
-    ASYNC_LOCK_HERE();
+    
 }
 #endif
 

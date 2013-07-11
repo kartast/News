@@ -14,6 +14,7 @@
 #import "RSSFeedManager.h"
 #import "CoreDataHelper.h"
 #import "DiffBotAPIManager.h"
+#import "SimpleFeedsQueryPickerViewController.h"
 
 @interface SimpleTableViewController ()
 
@@ -113,8 +114,15 @@
 //                                    withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
 //
 //                                    } inContext:[CoreDataHelper newContextInCurrentThread]];
-    NSArray *urls = @[@"http://appleinsider.com/articles/13/07/10/yahoo-updates-mail-app-with-multi-login-support-tumblr-with-refined-search"];
-    [[DiffBotAPIManager sharedManager] addURLsToAnalyze:urls];
+//    NSArray *urls = @[@"http://appleinsider.com/articles/13/07/10/yahoo-updates-mail-app-with-multi-login-support-tumblr-with-refined-search",
+//                      @"http://appleinsider.com/articles/13/07/09/apple-files-for-stay-on-itc-ban-for-legacy-iphones-and-ipads",
+//                      @"http://www.dailymail.co.uk/news/article-2359306/British-mother-Nicole-Reyes-held-squalid-Caribbean-jail-YEAR-charge.html",
+//                      @"http://darigiasdfas.co/asdf",
+//                      @"http://darigasiasdfas.co/asdf",];
+//    [[DiffBotAPIManager sharedManager] addURLsToAnalyze:urls];
+    
+    SimpleFeedsQueryPickerViewController *feedsQueryVC = [[SimpleFeedsQueryPickerViewController alloc] init];
+    [self presentViewController:feedsQueryVC animated:YES completion:nil];
 }
 
 #pragma mark Memory warning

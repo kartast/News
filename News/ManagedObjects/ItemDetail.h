@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Media;
 @class Item;
 
 @interface ItemDetail : NSManagedObject
@@ -18,12 +19,14 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * html;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * summary;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * resolvedURL;
 @property (nonatomic, retain) Item *item;
+@property (nonatomic, retain) NSSet *medias;
 @property (nonatomic) BOOL isValid;
 
 + (id)itemDetailForURL:(NSString *)url
@@ -33,4 +36,16 @@
 + (id)itemDetailFromResponseDict:(NSDictionary *)dict
                        inContext:(NSManagedObjectContext *)context
                     shouldInsert:(NSNumber *)bShouldInsert;
+
++ (id)itemDetailInvalidWithURL:(NSString *)url
+                     inContext:(NSManagedObjectContext *)context
+                  shouldInsert:(NSNumber *)bShouldInsert;
+@end
+
+@interface ItemDetail (CoreDataGeneratedAccessors)
+
+- (void)addMediasObject:(Media *)value;
+- (void)removeMediasObject:(Media *)value;
+- (void)addMedias:(NSSet *)values;
+- (void)removeMedias:(NSSet *)values;
 @end

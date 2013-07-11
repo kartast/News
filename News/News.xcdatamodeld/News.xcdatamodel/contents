@@ -17,7 +17,8 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="channel" inverseEntity="Item" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="channels" inverseEntity="Tag" syncable="YES"/>
     </entity>
-    <entity name="DisplayList" syncable="YES">
+    <entity name="DisplayList" representedClassName="DisplayList" syncable="YES">
+        <attribute name="displayingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="feed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="displayList" inverseEntity="Channel" syncable="YES"/>
@@ -50,9 +51,10 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="itemDetail" inverseEntity="Item" syncable="YES"/>
-        <relationship name="medias" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="itemDetail" inverseEntity="Media" syncable="YES"/>
+        <relationship name="medias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="itemDetail" inverseEntity="Media" syncable="YES"/>
     </entity>
     <entity name="Media" representedClassName="Media" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -71,9 +73,9 @@
     </entity>
     <elements>
         <element name="Channel" positionX="0" positionY="0" width="128" height="270"/>
-        <element name="DisplayList" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="DisplayList" positionX="0" positionY="0" width="128" height="120"/>
         <element name="Item" positionX="0" positionY="0" width="128" height="255"/>
-        <element name="ItemDetail" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="ItemDetail" positionX="0" positionY="0" width="128" height="255"/>
         <element name="Tag" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Media" positionX="160" positionY="192" width="128" height="150"/>
     </elements>

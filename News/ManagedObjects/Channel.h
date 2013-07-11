@@ -27,6 +27,34 @@
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSString *iconURL;
+
++ (id)channelWithURL:(NSString *)feed_url
+               title:(NSString *)title
+           createdAt:(NSDate *)created_at
+                link:(NSString *)site_url
+              syncID:(NSString *)syncID
+           inContext:(NSManagedObjectContext *) context
+        shouldInsert:(NSNumber *)bShouldInsert;
+
++ (id)channelWithURL:(NSString *)feed_url
+           inContext:(NSManagedObjectContext *)context
+        shouldInsert:(NSNumber *)bShouldInsert;
+
+
++ (NSArray *)importFromArray:(NSArray *)arrayOfDicts
+                   inContext:(NSManagedObjectContext *)context
+                shouldInsert:(NSNumber *)bShouldInsert;
+
++ (NSArray *)deleteChannelsExceptFor:(NSArray *)receivedFeedIDs
+                           inContext:(NSManagedObjectContext *)context;
+
++ (void)deleteChannelWithURL:(NSString *)url inContext:(NSManagedObjectContext *)context;
+
+- (void)addCategory:(NSString *)categoryString
+          inContext:(NSManagedObjectContext *)context;
+- (void)removeCategory:(NSString *)categoryString
+             inContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface Channel (CoreDataGeneratedAccessors)
@@ -46,31 +74,5 @@
 - (void)addTags:(NSSet *)values;
 - (void)removeTags:(NSSet *)values;
 
-+ (id)channelWithURL:(NSString *)feed_url
-               title:(NSString *)title
-           createdAt:(NSDate *)created_at
-                link:(NSString *)site_url
-              syncID:(NSString *)syncID
-           inContext:(NSManagedObjectContext *) context
-        shouldInsert:(NSNumber *)bShouldInsert;
 
-+ (id)channelWithURL:(NSString *)feed_url
-           inContext:(NSManagedObjectContext *)context
-        shouldInsert:(NSNumber *)bShouldInsert;
-
-+ (id)findChannelWithFeedID:(NSNumber *)feed_id;
-
-+ (NSArray *)importFromArray:(NSArray *)arrayOfDicts
-                   inContext:(NSManagedObjectContext *)context
-                shouldInsert:(NSNumber *)bShouldInsert;
-
-+ (NSArray *)deleteChannelsExceptFor:(NSArray *)receivedFeedIDs
-                           inContext:(NSManagedObjectContext *)context;
-
-+ (void)deleteChannelWithURL:(NSString *)url inContext:(NSManagedObjectContext *)context;
-
-- (void)addCategory:(NSString *)categoryString
-          inContext:(NSManagedObjectContext *)context;
-- (void)removeCategory:(NSString *)categoryString
-             inContext:(NSManagedObjectContext *)context;
 @end

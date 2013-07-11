@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NSString+URLEncoding.h"
+#import "GoogleFeedsAPI.h"
 
 @interface MiscTest : XCTestCase
 
@@ -65,4 +66,14 @@
     XCTAssertNoThrow([testDict valueForKey:@"noKey"], @"throws error!");
 }
 
+- (void)testGoogleFeedsQuery {
+    ASYNC_LOCK_INIT();
+    [[GoogleFeedsAPI sharedManager] queryWithString:@"Daring Fireball" withCallback:^(BOOL bSuccess, NSArray* entryObjects) {
+        if (bSuccess) {
+            DLog(@"response:%@", entryObjects);
+        }
+        ASYNC_LOCK_DONE();
+    }];
+    ASYNC_LOCK_HERE();
+}
 @end

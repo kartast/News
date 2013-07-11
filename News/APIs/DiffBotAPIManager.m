@@ -9,6 +9,7 @@
 #import "DiffBotAPIManager.h"
 #import "NSString+URLEncoding.h"
 #import "ItemDetail.h"
+#import "CoreDataHelper.h"
 
 static const NSString *kTokenDiffBot = @"2532d012268a7d8c7ddad11c734710ee";
 static const NSString *kDiffBotAPIURL = @"http://www.diffbot.com/api/batch";
@@ -123,6 +124,7 @@ NSMutableArray *downloadTasks;
 #pragma -- Process DiffBot Data
 
 - (void)processResponse:(NSData *)data fromURLs:(NSArray *)URLs {
+    NSManagedObjectContext *context = [[CoreDataHelper alloc] initWithNewContextInCurrentThread].managedObjectContext;
     
     /*
         Separate results into each URL request
@@ -150,10 +152,40 @@ NSMutableArray *downloadTasks;
             got error code means that the article fetching has failed, get the url
             !!just skip because the url returned is not the same
          */
+        
+        ItemDetail *itemDetail = [ItemDetail itemDetailFromResponseDict:bodyDict inContext:context shouldInsert:@YES];
+        if (itemDetail != nil) {
+            [urlsAnalyzedSuccess addObject:itemDetail.url];
+        }
         DLog(@"%@", bodyDict);
     }
+    
     // TODO: mark URL done or need to retry
+    NSMutableArray *mutableURLs = [URLs mutableCopy];
+    for (NSString *url in urlsAnalyzedSuccess) {
+        NSString *theMatchingURL;
+        for (NSString *urlSentToServer in mutableURLs) {
+            if ([urlSentToServer isEqualToString:url]) {
+                theMatchingURL = urlSentToServer;
+                break;
+            }
+        }
+        [mutableURLs removeObject:theMatchingURL];
+    }
+    
     // For those URL not marked, means probably got error, create a channelItem and request individually
+    for (NSString *urlFailed in mutableURLs) {
+        // Create invalid itemDetails
+        [ItemDetail itemDetailInvalidWithURL:urlFailed inContext:context shouldInsert:@YES];
+    }
+    
+    if ([context hasChanges]) {
+        NSError *error;
+        [context save:&error];
+        if (error) {
+            ALog(@"Error saving: %@", error);
+        }
+    }
 }
 
 @end

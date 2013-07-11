@@ -57,12 +57,17 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     RSSParser *rssFeedParser = [[RSSParser alloc] initWithUrl:url];
     [rssFeedParser parseWithCompletionCallback:^(RSSParser *parser, RSSFeed *feed, NSError *error) {
         if (error) {
-            callback(false, nil, error);
+            if (callback) {
+                callback(false, nil, error);
+            }
+            
             return;
         }
         
         [self importFeedToCoreData:feed inContext:context];
-        callback(true, feed, nil);
+        if (callback) {
+            callback(true, feed, nil);
+        }
     }];
 }
 

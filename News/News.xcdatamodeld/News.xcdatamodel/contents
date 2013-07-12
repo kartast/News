@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A510d" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3383" systemVersion="13A497d" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Channel" representedClassName="Channel" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="channelCategory" optional="YES" attributeType="String" syncable="YES"/>
@@ -67,15 +67,15 @@
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="channels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Channel" inverseName="tags" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="channels" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Channel" inverseName="tags" inverseEntity="Channel" syncable="YES"/>
         <relationship name="displayList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DisplayList" inverseName="tag" inverseEntity="DisplayList" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Channel" positionX="0" positionY="0" width="128" height="270"/>
-        <element name="DisplayList" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Item" positionX="0" positionY="0" width="128" height="255"/>
-        <element name="ItemDetail" positionX="0" positionY="0" width="128" height="255"/>
-        <element name="Media" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="Tag" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Channel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DisplayList" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ItemDetail" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Media" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

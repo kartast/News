@@ -28,7 +28,7 @@
 
 + (BOOL)hasTagWithName:(NSString *)name inContext:(NSManagedObjectContext *)context {
     NSArray *tagsWithName = [context fetchObjectsForEntityName:@"Tag" predicateWithFormat:@"name = %@", name];
-    NSArray *array = [context fetchObjectsForEntityName:@"DisplayList" predicateWithFormat:@"tags IN %@", tagsWithName];
+    NSArray *array = [context fetchObjectsForEntityName:@"DisplayList" predicateWithFormat:@"tag in %@", tagsWithName];
     if ([array count]==0) {
         return NO;
     }

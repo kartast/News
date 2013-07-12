@@ -40,7 +40,7 @@
     channelsFetchedResultsController.delegate = self;
     
     // Tags with at least one Channel
-    NSPredicate *predicateTagChannelNotNil = [NSPredicate predicateWithFormat:@"channels.@count == 0"];
+    NSPredicate *predicateTagChannelNotNil = [NSPredicate predicateWithFormat:@"channels.@count > 0"];
     entityDescription = [NSEntityDescription entityForName:@"Tag"
                                                          inManagedObjectContext:context];
     fetchRequest = [[NSFetchRequest alloc] init];
@@ -62,7 +62,7 @@
         ALog(@"error fetching tags");
     }
     if ([channelsFetchedResultsController performFetch:&error]) {
-        [self channelsFetchResultsChangedContent:tagsFetchedResultsController.fetchedObjects];
+        [self channelsFetchResultsChangedContent:channelsFetchedResultsController.fetchedObjects];
     }
     if (error) {
         ALog(@"error fetching channels");
@@ -71,7 +71,8 @@
 
 - (void)channelsFetchResultsChangedContent:(NSArray*)fetchedChannels {
     // Remove any channel not in fetchedChannels
-    NSArray *invalidChannels = [self.context fetchObjectsForEntityName:@"DisplayList" predicateWithFormat:@"NOT (feed in %@)", fetchedChannels];
+    NSArray *invalidChannels = [self.context fetchObjectsForEntityName:@"DisplayList"
+                                                   predicateWithFormat:@"NOT (feed in %@)", fetchedChannels];
     for (DisplayList * displayList in invalidChannels) {
         [self.context deleteObject:displayList];
     }
@@ -104,6 +105,12 @@
 }
 
 - (void)tagsFetchResultsChangedContent:(NSArray *)fetchedTags {
+    // Remove any empty tags
+    NSArray *invalidTags = [self.context fetchObjectsForEntityName:@"DisplayList"
+                                               predicateWithFormat:@"NOT (tag in %@) AND feed == nil", fetchedTags];
+    for (DisplayList * displayList in invalidTags) {
+        [self.context deleteObject:displayList];
+    }
     /*
         check if any tag not in displayList
         add to displayList

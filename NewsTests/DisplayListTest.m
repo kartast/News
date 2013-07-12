@@ -36,10 +36,6 @@
     [super tearDown];
 }
 
-- (void)testMaxSortOrder {
-    
-}
-
 #ifdef TESTASYNC
 - (void)testDisplayListAddNewChannel {
     ASYNC_LOCK_INIT(10);
@@ -96,6 +92,9 @@
                                                       DLog(@"Display List UPdated");
                                                       NSArray *anotherArray = [ctx fetchObjectsForEntityName:@"DisplayList" sortByKey:@"displayOrder" ascending:YES];
                                                       nDisplayListCount = [anotherArray count];
+                                                      if (nDisplayListCount == 6) {
+                                                          ASYNC_LOCK_DONE();
+                                                      }
                                                   }];
     
     DisplayListManager *displayListManager = [[DisplayListManager alloc] initWithContext:ctx];
@@ -105,14 +104,14 @@
     XCTAssertNotNil(anyFeed, @"no channel in core data after import!");
     
     Channel *channel = [anyFeed objectAtIndex:0];
-//    [channel addCategory:@"Tech" inContext:ctx];
+    [channel addCategory:@"Apple" inContext:ctx];
     
     ASYNC_LOCK_HERE();
     
     // Expected final value
     NSArray *displayListArray = [ctx fetchObjectsForEntityName:@"DisplayList"];
     int nExpectedTagCount = 1;
-    int nExpectedFeedCount = 5;
+    int nExpectedFeedCount = 4;
     int nActualTagCount =0;
     int nActualFeedCount =0;
     for (DisplayList *displayList in displayListArray) {
@@ -128,23 +127,111 @@
 }
 
 - (void)testdisplayListChannelRemoveTag {
+    ASYNC_LOCK_INIT(100);
+    [self setUpCoreDataStack:@"CoreData_6_Feed"];
     
+    __block int nDisplayListCount = 0;
+    [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDisplayListUpdated
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      DLog(@"Display List UPdated");
+                                                      NSArray *anotherArray = [ctx fetchObjectsForEntityName:@"DisplayList" sortByKey:@"displayOrder" ascending:YES];
+                                                      nDisplayListCount = [anotherArray count];
+
+                                                      if (nDisplayListCount == 6) {
+                                                          ASYNC_LOCK_DONE();
+                                                      }
+                                                  }];
+    
+    DisplayListManager *displayListManager = [[DisplayListManager alloc] initWithContext:ctx];
+    [displayListManager startMonitor];
+    
+    NSArray *anyFeed = [ctx fetchObjectsForEntityName:@"Channel"];
+    XCTAssertNotNil(anyFeed, @"no channel in core data after import!");
+    
+    Channel *channel = [anyFeed objectAtIndex:0];
+    [channel addCategory:@"Apple" inContext:ctx];
+    
+    NSArray *allFeeds = [ctx fetchObjectsForEntityName:@"Channel"];
+    for (Channel *channel in allFeeds) {
+        if ([channel.tags count] > 0) {
+            [channel removeTags:channel.tags];
+        }
+    }
+    [ctx save:nil];
+    
+    ASYNC_LOCK_HERE();
+    
+    // Expected final value
+    NSArray *displayListArray = [ctx fetchObjectsForEntityName:@"DisplayList"];
+    int nExpectedTagCount = 0;
+    int nExpectedFeedCount = 6;
+    int nActualTagCount =0;
+    int nActualFeedCount =0;
+    for (DisplayList *displayList in displayListArray) {
+        if ([displayList displayListType] == DisplayListFeed) {
+            nActualFeedCount++;
+        }else {
+            nActualTagCount++;
+        }
+    }
+    
+    XCTAssertTrue(nActualTagCount == nExpectedTagCount, @"Tag count dont match");
+    XCTAssertTrue(nActualFeedCount == nExpectedFeedCount, @"Tag count dont match");
 }
 
 - (void)testDisplayListChannelChangeTag {
-    
-}
-
-- (void)testDisplayListUpdate
-{
-    /*
-        Whenever |tag| or |Channel| is added or remove, display list must update
-     */
-    ASYNC_LOCK_INIT(6);
+    ASYNC_LOCK_INIT(10);
     [self setUpCoreDataStack:@"CoreData_6_Feed"];
     
+    __block int nDisplayListCount = 0;
+    [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDisplayListUpdated
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      DLog(@"Display List UPdated");
+                                                      NSArray *anotherArray = [ctx fetchObjectsForEntityName:@"DisplayList" sortByKey:@"displayOrder" ascending:YES];
+                                                      nDisplayListCount = [anotherArray count];
+                                                      if (nDisplayListCount == 6) {
+                                                          ASYNC_LOCK_DONE();
+                                                      }
+                                                  }];
+    
+    DisplayListManager *displayListManager = [[DisplayListManager alloc] initWithContext:ctx];
+    [displayListManager startMonitor];
+    
+    NSArray *anyFeed = [ctx fetchObjectsForEntityName:@"Channel"];
+    XCTAssertNotNil(anyFeed, @"no channel in core data after import!");
+    Channel *channel = [anyFeed objectAtIndex:0];
+    [channel addCategory:@"Apple" inContext:ctx];
+    
+    for (Channel *channel in anyFeed) {
+        if ([channel.tags count]>0  ) {
+            [channel removeTags:channel.tags];
+            [channel addCategory:@"Tech News" inContext:ctx];
+            break;
+        }
+    }
     
     ASYNC_LOCK_HERE();
+    
+    // Expected final value
+    NSArray *displayListArray = [ctx fetchObjectsForEntityName:@"DisplayList"];
+    int nExpectedTagCount = 2;
+    int nExpectedFeedCount = 4;
+    int nActualTagCount =0;
+    int nActualFeedCount =0;
+    for (DisplayList *displayList in displayListArray) {
+        if ([displayList displayListType] == DisplayListFeed) {
+            nActualFeedCount++;
+        }else {
+            nActualTagCount++;
+        }
+    }
+    
+    XCTAssertTrue(nActualTagCount == nExpectedTagCount, @"Tag count dont match");
+    XCTAssertTrue(nActualFeedCount == nExpectedFeedCount, @"Tag count dont match");
 }
 
 - (void)testDisplayListOrdering

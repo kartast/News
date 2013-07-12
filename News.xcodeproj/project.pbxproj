@@ -43,6 +43,7 @@
 		C771B673178AA2B3007ADA69 /* feedbinSubscriptions70.json in Resources */ = {isa = PBXBuildFile; fileRef = C771B670178AA2B3007ADA69 /* feedbinSubscriptions70.json */; };
 		C771B674178AA2B3007ADA69 /* feedbinSubscriptions72.json in Resources */ = {isa = PBXBuildFile; fileRef = C771B671178AA2B3007ADA69 /* feedbinSubscriptions72.json */; };
 		C771B675178AA2B3007ADA69 /* feedbinTaggings.json in Resources */ = {isa = PBXBuildFile; fileRef = C771B672178AA2B3007ADA69 /* feedbinTaggings.json */; };
+		C78A3CC7178F99C200E5D326 /* DisplayListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C78A3CC6178F99C200E5D326 /* DisplayListManager.m */; };
 		C79530D4178D494300A2BBE4 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = C79530D3178D494300A2BBE4 /* Media.m */; };
 		C79530E0178D93B900A2BBE4 /* DisplayList.m in Sources */ = {isa = PBXBuildFile; fileRef = C79530DF178D93B900A2BBE4 /* DisplayList.m */; };
 		C79A2404178BCBD300CB7E92 /* NSMutableString+RSSKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A23F3178BCBD300CB7E92 /* NSMutableString+RSSKit.m */; };
@@ -144,6 +145,8 @@
 		C771B670178AA2B3007ADA69 /* feedbinSubscriptions70.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feedbinSubscriptions70.json; sourceTree = "<group>"; };
 		C771B671178AA2B3007ADA69 /* feedbinSubscriptions72.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feedbinSubscriptions72.json; sourceTree = "<group>"; };
 		C771B672178AA2B3007ADA69 /* feedbinTaggings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feedbinTaggings.json; sourceTree = "<group>"; };
+		C78A3CC5178F99C200E5D326 /* DisplayListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayListManager.h; sourceTree = "<group>"; };
+		C78A3CC6178F99C200E5D326 /* DisplayListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayListManager.m; sourceTree = "<group>"; };
 		C79530D2178D494300A2BBE4 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		C79530D3178D494300A2BBE4 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		C79530DE178D93B900A2BBE4 /* DisplayList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayList.h; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 		C762EC2717814C5700AF734E /* News */ = {
 			isa = PBXGroup;
 			children = (
+				C78A3CC5178F99C200E5D326 /* DisplayListManager.h */,
+				C78A3CC6178F99C200E5D326 /* DisplayListManager.m */,
 				C7ADE8A4178EC6F200B48793 /* MediaFetcher.h */,
 				C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */,
 				C7ADE8A7178ECBFA00B48793 /* ItemDetailFetcher.h */,
@@ -607,6 +612,7 @@
 				C7EA52BF1786894800E1304C /* SimpleEntriesListViewController.m in Sources */,
 				C762EC2E17814C5700AF734E /* main.m in Sources */,
 				C732385B178BEF970009DA29 /* RSSFeedManager.m in Sources */,
+				C78A3CC7178F99C200E5D326 /* DisplayListManager.m in Sources */,
 				C79A2407178BCBD300CB7E92 /* RSSAttachedMedia.m in Sources */,
 				C79530D4178D494300A2BBE4 /* Media.m in Sources */,
 				C79530E0178D93B900A2BBE4 /* DisplayList.m in Sources */,

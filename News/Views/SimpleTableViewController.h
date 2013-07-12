@@ -13,6 +13,6 @@
     NSFetchedResultsController *fetchResultsController;
 }
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
-
+@property (nonatomic, retain) IBOutlet UITableViewCell *customCell;
 - (IBAction)addTestFeed:(id)sender;
 @end

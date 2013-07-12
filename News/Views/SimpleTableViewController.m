@@ -15,6 +15,11 @@
 #import "CoreDataHelper.h"
 #import "DiffBotAPIManager.h"
 #import "SimpleFeedsQueryPickerViewController.h"
+#import "DisplayList.h"
+#import "DisplayListManager.h"
+#import "Tag.h"
+#import "UIImageView+WebCache.h"
+#import "FeedCell.h"
 
 @interface SimpleTableViewController ()
 
@@ -22,6 +27,11 @@
 
 @implementation SimpleTableViewController
 @synthesize tableView = _tableView;
+@synthesize customCell;
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +48,8 @@
     
     [self setupFetchResultsController];
     
+//    nav.barTintColor = [UIColor ]
+    
     // Do any additional setup after loading the view from its nib.
     [self startFetchFeeds];
 }
@@ -50,10 +62,10 @@
     NSManagedObjectContext *context = [appdelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"Channel"
+    NSEntityDescription *ent = [NSEntityDescription entityForName:@"DisplayList"
                                            inManagedObjectContext:context];
     fetchRequest.entity = ent;
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     fetchResultsController = [[NSFetchedResultsController alloc]
@@ -76,6 +88,10 @@
 }
 
 #pragma mark - UITableView delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 85;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[fetchResultsController sections] count];
 }
@@ -85,14 +101,32 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"uniqueID"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"uniqueID"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    FeedCell *cell = (FeedCell *)[self.tableView dequeueReusableCellWithIdentifier:@"feedCell"];
     
-    Channel *channel = [fetchResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = channel.title;
+    if (cell == nil) {
+        [self.tableView registerNib:[UINib nibWithNibName:@"feedCell" bundle:nil] forCellReuseIdentifier:@"feedCell"];
+        cell = (FeedCell*)[self.tableView dequeueReusableCellWithIdentifier:@"feedCell"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    DisplayList *displayItem = [fetchResultsController objectAtIndexPath:indexPath];
+    NSString* imageURL = [displayItem displayImage];
+    if ([displayItem displayListType] == DisplayListFeed) {
+        Channel *channel = displayItem.feed;
+        [cell setTitle:channel.title andImageURL:imageURL];
+//        UILabel* titleLabel = (UILabel*)[cell viewWithTag:100];
+//        UIImageView* imageView = (UIImageView*)[cell viewWithTag:101];
+//        if (imageURL) {
+//            [imageView setImageWithURL:[NSURL URLWithString:imageURL]
+//                           placeholderImage:[UIImage imageNamed:nil]];
+//        }
+//        titleLabel.text = channel.title;
+    }else {
+        Tag *tag = displayItem.tag;
+        Channel *channel = [tag.channels anyObject];
+        UILabel* titleLabel = (UILabel*)[cell viewWithTag:100];
+        UIImageView* imageView = (UIImageView*)[cell viewWithTag:101];
+        titleLabel.text = channel.title;
+    }
     return  cell;
 }
 
@@ -101,10 +135,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Channel *channel = [fetchResultsController objectAtIndexPath:indexPath];
-    SimpleEntriesListViewController *entryListVC = [[SimpleEntriesListViewController alloc] initWithNibName:@"SimpleEntriesListViewController" bundle:nil];
-    entryListVC.channel = channel;
-    [self.navigationController pushViewController:entryListVC animated:YES];
+//    Channel *channel = [fetchResultsController objectAtIndexPath:indexPath];
+//    SimpleEntriesListViewController *entryListVC = [[SimpleEntriesListViewController alloc] initWithNibName:@"SimpleEntriesListViewController" bundle:nil];
+//    entryListVC.channel = channel;
+//    [self.navigationController pushViewController:entryListVC animated:YES];
 }
 
 #pragma buttons

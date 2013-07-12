@@ -19,15 +19,24 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.backgroundColor = [UIColor whiteColor];
     
     // Add simpleTableViewController
     {
-        SimpleTableViewController *simpleTableVC = [[SimpleTableViewController alloc] init];
+        SimpleTableViewController *simpleTableVC = [[SimpleTableViewController alloc] initWithNibName:@"SimpleTableViewController" bundle:nil];
         UINavigationController *simpleNavVC = [[UINavigationController alloc] initWithRootViewController:simpleTableVC];
+        [simpleNavVC setNavigationBarHidden:YES];
+        
+        // tint
+        UINavigationBar *nav = [[UINavigationBar alloc] initWithFrame:simpleNavVC.view.frame];
+        nav.barStyle = UIBarStyleBlack;
+        nav.translucent = YES;
+        [self.window insertSubview:nav atIndex:0];
+        
         [self.window addSubview:simpleNavVC.view];
         [self.window setRootViewController:simpleNavVC];
-        DLog(@"%@", [self managedObjectContext]);
+        [self.window setBackgroundColor:[UIColor clearColor]];
+        [self.window setOpaque:NO];
     }
     
     [self.window makeKeyAndVisible];

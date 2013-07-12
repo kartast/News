@@ -11,6 +11,7 @@
 #import "CoreDataHelper.h"
 #import "RSSFeedManager.h"
 #import "ItemDetailFetcher.h"
+#import "DisplayListManager.h"
 
 @implementation FeedSyncManager
 @synthesize syncType;
@@ -28,6 +29,8 @@
     if (self = [super init]) {
         syncType = FeedSyncTypeRSS;
         itemDetailFetcher = [[ItemDetailFetcher alloc] init];
+        displayListManager = [[DisplayListManager alloc] initWithContext:[CoreDataHelper defaultContext]];
+        [displayListManager startMonitor];
     }
     return self;
 }
@@ -39,6 +42,8 @@
 #pragma mark -- Sync stuffs
 - (void)startSync {
     // TODO: make sure dont double sync
+    
+    
     switch (syncType) {
         case FeedSyncTypeRSS:
         {

@@ -38,7 +38,7 @@
 
 #ifdef TESTASYNC
 - (void)testDisplayListAddNewChannel {
-    ASYNC_LOCK_INIT(10);
+    ASYNC_LOCK_INIT(100);
     
     [self setUpCoreDataStack:@"CoreData_2_Feed"];
     
@@ -47,7 +47,7 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
-                                                      DLog(@"Display List UPdated");
+                                                      DLog(@"Display List Updated");
                                                       NSArray *anotherArray = [ctx fetchObjectsForEntityName:@"DisplayList" sortByKey:@"displayOrder" ascending:YES];
                                                       nDisplayListCount = [anotherArray count];
                                                   }];
@@ -81,7 +81,7 @@
 }
 
 - (void)testDisplayListChannelAddTag {
-    ASYNC_LOCK_INIT(10);
+    ASYNC_LOCK_INIT(50);
     [self setUpCoreDataStack:@"CoreData_6_Feed"];
     
     __block int nDisplayListCount = 0;

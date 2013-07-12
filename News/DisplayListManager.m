@@ -145,8 +145,6 @@
     }else if (controller == channelsFetchedResultsController) {
         [self channelsFetchResultsChangedContent:controller.fetchedObjects];
     }
-    
-    
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {

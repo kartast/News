@@ -16,11 +16,12 @@ enum FeedSyncType {
 };
 typedef enum FeedSyncType FeedSyncType;
 
-@class FeedBinAPI, ItemDetailFetcher;
+@class FeedBinAPI, ItemDetailFetcher, DisplayListManager;
 @interface FeedSyncManager : NSObject {
     FeedBinAPI *feedBinAPIManager;
     FeedSyncType syncType;
     ItemDetailFetcher *itemDetailFetcher;
+    DisplayListManager *displayListManager;
 }
 
 @property (nonatomic, readwrite) FeedSyncType syncType;

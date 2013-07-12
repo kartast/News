@@ -34,4 +34,5 @@ typedef enum DisplayListType DisplayListType;
                   inContext:(NSManagedObjectContext *)context
                shouldInsert:(NSNumber *)bShouldInsert;
 + (NSNumber *)highestDisplayOrderInContext:(NSManagedObjectContext *)context;
+- (NSString *)displayImage;
 @end

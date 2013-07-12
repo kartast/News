@@ -9,7 +9,11 @@
 #import "DisplayList.h"
 #import "Channel.h"
 #import "Tag.h"
+#import "Item.h"
+#import "ItemDetail.h"
+#import "Media.h"
 #import "NSManagedObjectContext-EasyFetch.h"
+#import "CoreDataHelper.h"
 
 @implementation DisplayList
 
@@ -81,5 +85,34 @@
     }
     
     return [NSNumber numberWithInt:nMaxDisplayOrder];
+}
+
+- (NSString *)displayImage {
+    NSString* imageURL = nil;
+    
+    if ([self displayListType] == DisplayListFeed) {
+        // Get the first item
+        Channel *feed = [self feed];
+        
+        for (int i =0; i<[[feed items] count]; i++) {
+            Item *item = [feed.items objectAtIndex:i];
+            ItemDetail *itemDetail = [item itemDetail];
+            if (itemDetail) {
+                // if has media, return primary media
+                NSSet *medias = itemDetail.medias;
+                for (Media *media in [medias allObjects]) {
+                    imageURL = media.link;
+                    if (media.primary) {
+                        break;
+                    }
+                }
+            }
+            if (imageURL) {
+                break;
+            }
+        }
+    }
+    
+    return imageURL;
 }
 @end

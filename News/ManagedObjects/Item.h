@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class Channel;
+@class ItemDetail;
 
 @interface Item : NSManagedObject
 
@@ -26,7 +27,7 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * unread;
 @property (nonatomic, retain) Channel *channel;
-@property (nonatomic, retain) NSManagedObject *itemDetail;
+@property (nonatomic, retain) ItemDetail *itemDetail;
 
 + (id)itemWithUID:(NSString *)uid
         inContext:(NSManagedObjectContext *)context

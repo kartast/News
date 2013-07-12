@@ -13,5 +13,6 @@
     NSManagedObjectContext *tempContext;
     NSFetchedResultsController *fetchedResultsController;
 }
+- (id)initWithContext:(NSManagedObjectContext *)context;
 - (void)startFetching;
 @end

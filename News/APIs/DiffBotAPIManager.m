@@ -130,6 +130,9 @@ NSMutableArray *downloadTasks;
         Separate results into each URL request
      */
     NSError *error = nil;
+    if (data == nil) {
+        return;
+    }
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];

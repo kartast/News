@@ -16,6 +16,13 @@
 
 @implementation MediaFetcher
 
+- (id)initWithContext:(NSManagedObjectContext *)context {
+    if (self = [super init]) {
+        mainContext = context;
+    }
+    return self;
+}
+
 - (id)init {
     if (self = [super init]) {
         mainContext = [CoreDataHelper defaultContext];

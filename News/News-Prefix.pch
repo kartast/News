@@ -32,21 +32,16 @@
 
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import "NSManagedObjectContext-EasyFetch.h"
 
 #ifdef DEBUG
 #define BLog(formatString, ...) NSLog((@"%s " formatString), __PRETTY_FUNCTION__, ##__VA_ARGS__);
 #endif
 
 #define TESTASYNC   1
-
 #ifdef  TESTASYNC
 // For testint async
-
-#define ASYNC_LOCK_DONE() [conditionLock unlockWithCondition:1]
 #define ASYNC_LOCK_INIT(nSeconds) NSConditionLock * conditionLock = [NSConditionLock new];     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ sleep(nSeconds); XCTFail(@"async test timeout after %d seconds", nSeconds); ASYNC_LOCK_DONE(); });
+#define ASYNC_LOCK_DONE() [conditionLock unlockWithCondition:1]
 #define ASYNC_LOCK_HERE() [conditionLock lockWhenCondition:1]
-
-
 #endif
 

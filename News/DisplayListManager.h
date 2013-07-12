@@ -9,6 +9,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DisplayListManager : NSObject
+static NSString *kNotificationDisplayListUpdated = @"NotificationDisplayListUpdated";
+
+@interface DisplayListManager : NSObject <NSFetchedResultsControllerDelegate> {
+    NSFetchedResultsController *channelsFetchedResultsController;
+    NSFetchedResultsController *tagsFetchedResultsController;
+}
+
+@property (nonatomic, retain)NSManagedObjectContext *context;
+
+- (void)startMonitor;
+- (id)initWithContext:(NSManagedObjectContext *)ctx;
 
 @end

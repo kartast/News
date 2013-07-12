@@ -88,6 +88,7 @@
 
 - (void) parserDidStartDocument:(NSXMLParser *)parser {
 	feed = [[RSSFeed alloc] init];
+    feed.urlSelf = self.url;
 	tagStack = [[NSMutableArray alloc] init];
 	tagPath = [[NSMutableString alloc] initWithString:@"/"];
 }
@@ -143,7 +144,27 @@
 	} else if ([tagPath isEqualToString:@"/rss/channel/link"] || [tagPath isEqualToString:@"/feed/link"]) {
 		// RSS 2.0 or Atom 1.0?
 			NSString *href = [attributes objectForKey:@"href"];
-		if (href) {
+            NSString *type = [attributes objectForKey:@"type"];
+        if (type) {
+            if ([type isEqualToString:@"application/atom+xml"]) {
+                if (href) {
+                    // Atom 1.0
+                    feed.urlSelf = href;
+                } else {
+                    // RSS 2.0
+                    feed.urlSelf = text;
+                }
+            }else {
+                if (href) {
+                    // Atom 1.0
+                    feed.url = href;
+                } else {
+                    // RSS 2.0
+                    feed.url = text;
+                }
+            }
+        }
+		else if (href) {
 			// Atom 1.0
 			feed.url = href;
 		} else {

@@ -26,6 +26,7 @@
 	NSString *generator;
 	NSTimeInterval validTime;
 	NSString *iconUrl;
+    NSString *urlSelf;
 	RSSCloudService *cloudService;
 }
 
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *urlSelf;
 @property (nonatomic, retain) NSString *date;
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSMutableArray *articles;

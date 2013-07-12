@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<rss
+    xmlns:fnc="http://www.foxnews.com/xmlfeed/fncModule#" version="2.0">
+    <channel>
+        <title>FOXNews.com</title>
+        <link>http://www.foxnews.com/</link>
+        <description>FOX News Channel - We Report. You Decide.</description>
+        <copyright>Copyright 2013 FOX News Channel</copyright>
+        <managingEditor>foxnewsonline@foxnews.com</managingEditor>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 12 July 2013 00:38:19 EDT</lastBuildDate>
+        <webMaster>foxnewsonline@foxnews.com</webMaster>
+        <image>
+            <url>http://www.foxnews.com/images/headers/fnc_logo.gif</url>
+            <title>FOXNews.com Live Bookmark</title>
+            <link>http://www.foxnews.com/</link>
+        </image>
+        <atom10:link
+        xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/foxnews/latest" />
+        <feedburner:info
+        xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="foxnews/latest" />
+        <atom10:link
+        xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+        <item>
+            <title>
+                <![CDATA[House Passes Scaled-Down Farm Bill]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/house-republicans-drop-food-stamps-from-massive-farm-bill/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description>
+                <![CDATA[House narrowly passes massive, revised farm bill that carves out the food stamp program after Democrats effectively boycotted it, but the legislation faces an uncertain future in the Senate.<li><b><a href="http://www.foxnews.com/politics/2013/07/11/deal-emerging-on-student-loans-bi-partisan-talks-continue/">Student Loans Deal Hits $22 Billion Bump</a></b></li><li><b><a href="http://video.foxnews.com/v/2540139478001/">VIDEO: House GOP Won't Rush New Immigration Reform Measures</a></b><img src="/i/redes/icon-video.gif"></li>        ]]>
+            </description>
+            <pubDate>Fri, 12 Jul 2013 00:37:44 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[WHAT BOONDOGGLE? Carney Unaware of 'Unused' $34M Military HQ]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/what-boondoggle-carney-unaware-34m-military-hq-troops-wont-use/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description>
+                <![CDATA[<li><b><a href="http://www.foxnews.com/politics/2013/07/10/military-dumps-34m-into-afghanistan-hq-that-us-forces-wont-use/">Military Dumps $34M Into Afghan Facility Forces Won't Use</a></b></li>]]>
+            </description>
+            <pubDate>Fri, 12 Jul 2013 00:37:44 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[ZIMMERMAN TRIAL  State Says 'Assumptions' Lead to Shooting in Closing]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/closing-arguments-to-begin-in-zimmerman-trial/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description>
+                <![CDATA[<li><b><a href="http://www.foxnews.com/us/2013/07/11/reporter-notebook-at-zimmerman-trial/">Reporter's Notebook: <br> At the George Zimmerman Trial</a></b></li><li><b><a href="http://video.foxnews.com/v/2540615333001/">VIDEO: Will Prosecution's Closing Statements Convince the Jury?</a></b><img src="/i/redes/icon-video.gif"></li><li><b><a href="http://www.foxnews.com/opinion/2013/07/11/white-hispanics-crackers-teenage-mammies-no-winners-in-martin-zimmerman-case/">JUAN WILLIAMS: Sorry Truth About Race and Zimmerman Trial</a></b></li><li><b><a href="http://www.foxnews.com/us/2013/07/11/fla-cities-on-guard-for-any-potential-post-zimmerman-verdict-unrest-stressing/">Florida Cities on Guard for Possible <br>Post-Zimmerman Verdict Unrest</a></b></li><li><b><a href="http://www.foxnews.com/live-coverage/zimmerman-trial"><strong class="em">GAVEL-TO-GAVEL COVERAGE: <br></strong>George Zimmerman Trial </a></b></li>]]>
+            </description>
+            <pubDate>Fri, 12 Jul 2013 00:37:44 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[CLAIM RIGHTS VIOLATED  Convicted Child Sex Abusers Sue for $10 Million]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/convicted-child-sex-abusers-sue-for-10m-claim-state-program-violated-their/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description>
+                <![CDATA[<li><b><a href="http://www.foxnews.com/us/2013/07/11/possible-significant-development-in-boston-strangler-case-report-says/">Boston Strangler Suspect to Be Exhumed Over New DNA</a></b></li><li><b><a href="http://video.foxnews.com/v/2540615528001/">VIDEO: New Evidence Ties Another Person to the Last Murder</a></b><img src="/i/redes/icon-video.gif"></li><li><b><a href="http://www.foxnews.com/us/2013/07/11/half-brother-is-reported-suspect-in-death-california-autistic-boy/">16-Year-Old Half Brother Reported Suspect in Autistic Boy's Death</a></b></li>]]>
+            </description>
+            <pubDate>Fri, 12 Jul 2013 00:37:44 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[BEACH BUMMER Move to Snuff Out Popular Bonfire Pits]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/california-regulators-look-to-curb-beach-bonfires-citing-climate-change/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description>
+                <![CDATA[<li><b><a href="http://www.foxnews.com/politics/2013/07/11/house-republicans-drop-food-stamps-from-massive-farm-bill/">Dems in Uproar Over Move to Drop Food Stamps From Farm Bill</a></b></li><li><b><a href="http://www.foxnews.com/politics/2013/07/11/house-republicans-throw-brakes-on-immigration-push/">House GOP Throws Brakes on Immigration Push</a></b></li><li><b><a href="http://www.foxnews.com/politics/2013/07/11/us-government-records-1165-billion-surplus-in-june/">Gov't Records $116.5B June Surplus</a></b></li>]]>
+            </description>
+            <pubDate>Fri, 12 Jul 2013 00:37:44 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Diplomatic nominee grilled over Benghazi at hearing]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/nominee-for-diplomatic-post-to-face-benghazi-grilling/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Report: Woman tells gunman he doesn't have the nerve ]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/new-york-woman-tells-gunman-doesnt-have-nerve-to-shoot-her-report-says/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Army relieves general after adultery, altercation charges]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/army-relieves-general-following-charges-adultery-involvement-in-physical/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Sen. Paul stands by aide with reported shock jock past]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/rand-paul-aide-shock-jock/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Christian university loses bid to overturn ObamaCare - Not all insurers game for state health exchanges]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/federal-appeals-court-rejects-christian-university-request-to-overturn/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[24 bodies now found in Quebec train crash, police say- PHOTOS: Deadly train derailment ]]>
+            </title>
+            <link>http://www.foxnews.com/world/2013/07/11/24-bodies-now-found-in-quebec-train-crash-police-say/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Family reportedly finds dead frog in grocery store kale]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/pennsylvania-family-reportedly-finds-dead-frog-in-bag-greens/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[STARNES: Airman objects to gay wedding, is punished]]>
+            </title>
+            <link>http://radio.foxnews.com/toddstarnes/top-stories/airman-punished-for-objecting-to-gay-marriage-in-military-chapel.html</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Report: 9/11 mastermind crafted vacuum in custody- Hero Pakistani doctor allowed to see family in jail]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/cia-reportedly-allowed-11-mastermind-to-design-vacuum-cleaner-in-custody/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[NC House approves restrictions on abortion clinics]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/12/nc-house-approves-abortion-legislation/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Spitzer meets signature deadline to get on NYC ballot]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/12/spitzer-meets-signature-deadline-to-get-on-nyc-ballot/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Teresa Heinz Kerry improving, moved to rehab hospital]]>
+            </title>
+            <link>http://www.foxnews.com/politics/2013/07/11/heinz-kerry-upgraded-from-fair-to-good-condition-moved-to-rehab-hospital/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Syria's Al Qaeda-aligned rebels get aid via Kuwait- Egyptian Christians target of Islamist anger]]>
+            </title>
+            <link>http://www.foxnews.com/world/2013/07/11/money-guns-flowing-from-kuwait-to-syria-most-radical-rebel-factions/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[NTSB: No sign of mechanical trouble on Asiana flight]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/12/investigators-find-no-sign-mechanical-trouble-on-asiana-214-say-ntsb/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Family to bury soldier hacked to death in London ]]>
+            </title>
+            <link>http://www.foxnews.com/world/2013/07/11/family-prepares-to-bury-soldier-hacked-to-death-in-london/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Calif. memorial to honor World War II 'comfort women']]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/12/memorial-to-wwii-comfort-women-approved-in-california-city/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Fri, 12 Jul 2013 00:37:48 EST</pubDate>
+            <fnc:datetime>12:37 AM EST</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Biblical Dig Needs Your Help]]>
+            </title>
+            <link>http://www.foxnews.com/science/2013/07/11/archaeologists-uncover-biblical-city/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Remini Quits Scientology]]>
+            </title>
+            <link>http://www.foxnews.com/entertainment/2013/07/11/king-queens-star-leah-remini-reportedly-quits-scientology/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Airlines Use Fear of Bad Seats]]>
+            </title>
+            <link>http://www.foxnews.com/travel/2013/07/11/airlines-exploit-your-fear-getting-bad-seat/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Deen Dumps Legal Team]]>
+            </title>
+            <link>http://www.foxnews.com/entertainment/2013/07/11/paula-deen-dumps-legal-team/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Hubble Finds True Blue Planet]]>
+            </title>
+            <link>http://www.foxnews.com/science/2013/07/11/hubble-spies-blue-planet-not-earth/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Miss Universe's Teeny Bikini]]>
+            </title>
+            <link>http://www.foxnews.com/entertainment/2013/07/11/break-time-miss-universe-olivia-culpo-uses-bikini-not-online-dating-to-attract/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Does Burnt Meat Cause Cancer?]]>
+            </title>
+            <link>http://www.foxnews.com/health/2013/07/11/health-myth-does-burnt-meat-cause-cancer/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Busy Named Her Kid WHAT!?]]>
+            </title>
+            <link>http://www.foxnews.com/slideshow/entertainment/2013/03/29/totally-insane-star-baby-names-lincoln/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[8 Ways ToStop Car Thieves]]>
+            </title>
+            <link>http://www.foxnews.com/leisure/2013/07/04/how-to-keep-your-car-from-getting-stolen/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Twister Inventor Dies at 82]]>
+            </title>
+            <link>http://www.foxnews.com/us/2013/07/11/inventor-twister-game-dies-at-82/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Time to Retire The N-word]]>
+            </title>
+            <link>http://www.foxnews.com/opinion/2013/07/10/it-time-to-retire-n-word-for-everyone/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Sheen After Loch Ness Monster]]>
+            </title>
+            <link>http://www.foxnews.com/entertainment/2013/07/11/charlie-sheen-reportedly-visits-scotland-searches-for-loch-ness-monster/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA[McDonald's Menu Failures]]>
+            </title>
+            <link>http://www.foxnews.com/leisure/2013/07/11/mcdonald-10-most-spectacular-menu-flops/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+        <item>
+            <title>
+                <![CDATA['Factor' vs. Mermaid Parade]]>
+            </title>
+            <link>http://video.foxnews.com/v/2540731164001/</link>
+            <author>foxnewsonline@foxnews.com</author>
+            <description />
+            <pubDate>Thu, 11 Jul 2013 22:43:03 EST</pubDate>
+            <fnc:datetime>07/11</fnc:datetime>
+        </item>
+    </channel>
+</rss>

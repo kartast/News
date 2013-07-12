@@ -15,6 +15,7 @@
 @synthesize title;
 @synthesize description;
 @synthesize url;
+@synthesize urlSelf;
 @synthesize date;
 @synthesize author;
 @synthesize articles;
@@ -40,6 +41,7 @@
 	self.title = NULL;
 	self.description = NULL;
 	self.url = NULL;
+    self.urlSelf = NULL;
 	self.date = NULL;
 	self.author = NULL;
 	self.articles = NULL;

@@ -14,13 +14,16 @@ typedef void (^RSSFeedAddingCallback)(BOOL, RSSFeed *, NSError *);
 
 @interface RSSFeedManager : NSObject <NSURLSessionDataDelegate> {
     CoreDataHelper *cdHelper;
+    NSManagedObjectContext *givenContext;
 }
 @property (nonatomic, retain) CoreDataHelper *cdHelper;
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSMutableArray *downloadTasks; //NSURLSessionDownloadTask
+@property (nonatomic ,retain) NSManagedObjectContext *givenContext;
 
 + (id)sharedManager;
-- (void)fetchLatestEntries;
++ (id)testManager;
+- (void)fetchLatestEntriesInContext:(NSManagedObjectContext *)context;
 - (void)addFeedByURL:(NSString *)url
         withCallback:(RSSFeedAddingCallback)callback
            inContext:(NSManagedObjectContext *)context;

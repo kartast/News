@@ -9,6 +9,7 @@
 #import "Channel.h"
 #import "Item.h"
 #import "Tag.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @implementation Channel
 

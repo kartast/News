@@ -8,7 +8,7 @@
 
 #import "Item.h"
 #import "Channel.h"
-
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @implementation Item
 

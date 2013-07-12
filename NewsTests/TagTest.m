@@ -11,6 +11,7 @@
 #import "Tag.h"
 #import "Channel.h"
 #import "ParseSubscriptionOperation.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @interface TagTest : XCTestCase {
     NSPersistentStoreCoordinator *coord;

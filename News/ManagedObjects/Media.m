@@ -7,7 +7,7 @@
 //
 
 #import "Media.h"
-
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @implementation Media
 

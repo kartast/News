@@ -10,6 +10,7 @@
 #import "Item.h"
 #import "Media.h"
 #import "NSDate+InternetDateTime.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @implementation ItemDetail
 

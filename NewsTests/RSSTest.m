@@ -10,6 +10,7 @@
 #import "RSSKit.h"
 #import "Channel.h"
 #import "RSSFeedManager.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @interface RSSTest : XCTestCase {
     NSPersistentStoreCoordinator *coord;

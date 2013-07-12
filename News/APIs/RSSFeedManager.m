@@ -14,13 +14,14 @@
 #import "ISO8601DateFormatter.h"
 #import "CoreDataHelper.h"
 #import "AppDelegate.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 static const int kSecondsChannelUpdated = -3*60*60;
 static const int kMaxChannelSimultaneousFetchCount = 3;
 
 @implementation RSSFeedManager
 @synthesize cdHelper;
-@synthesize session, downloadTasks;
+@synthesize session, downloadTasks, givenContext;
 
 + (id)sharedManager {
     static RSSFeedManager *sharedMyManager = nil;
@@ -34,20 +35,32 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     return sharedMyManager;
 }
 
-- (void)fetchLatestEntries {
++ (id)testManager {
+    static RSSFeedManager *testManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        testManager = [[self alloc] init];
+        
+        testManager.cdHelper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
+        testManager.downloadTasks = [[NSMutableArray alloc] init];
+    });
+    return testManager;
+}
+
+- (void)fetchLatestEntriesInContext:(NSManagedObjectContext *)context {
     /*
         Get all channels, fetch all channels with updatedAt older than 1 hour
      */
+    self.givenContext = context;
     int nCurrentDownloadTasksCount = [self.downloadTasks count];
     if (nCurrentDownloadTasksCount <= kMaxChannelSimultaneousFetchCount) {
         [self getNextChannelToFetch:^(Channel *channel) {
             //Add channel to download
             if (channel != nil) {
                 [self startDownloadTaskForFeedURL:channel.feedURL];
-                [self fetchLatestEntries];
+                [self fetchLatestEntriesInContext:context];
             }
-            
-        }];
+        } inContext:context];
     }
 }
 
@@ -78,7 +91,7 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
                   inContext:(NSManagedObjectContext *)context
                withCallback:(RSSFeedAddingCallback)callback {
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         
         // This calls in background
@@ -87,6 +100,8 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
             // create new one
             CoreDataHelper *helper = [[CoreDataHelper alloc] initWithNewContextInCurrentThread];
             bgContext = helper.managedObjectContext;
+        } else {
+            
         }
         NSData *rssData = [NSData dataWithContentsOfFile:filePath];
         RSSParser *parser = [[RSSParser alloc] init];
@@ -102,11 +117,6 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
             callback(true, feed, nil);
         }];
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            // Update UI
-            // Example:
-            // self.myLabel.text = result;
-        });
     });
     
 }
@@ -131,7 +141,10 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
         [channel setCreatedAt:[NSDate date]];
         [channel setUpdatedAt:[NSDate dateWithTimeIntervalSince1970:0]];
         [channel setIconURL:feed.iconUrl];
-        [channel setFeedURL:feed.url];
+        if (feed.urlSelf) {
+            [channel setFeedURL:feed.urlSelf];
+        }
+        [channel setLink:feed.url];
         for (NSString *category in feed.categories) {
             [channel addCategory:category inContext:context];
         }
@@ -188,8 +201,9 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     }
 }
 
-- (void)getNextChannelToFetch:(void(^)(Channel *))callback {
-    NSManagedObjectContext *context = [self.cdHelper mainContext];
+- (void)getNextChannelToFetch:(void(^)(Channel *))callback
+                    inContext:(NSManagedObjectContext *)context {
+    
     NSDate *threeHoursAgo = [NSDate dateWithTimeIntervalSinceNow:kSecondsChannelUpdated];
     NSArray *channelsToUpdate = [context fetchObjectsForEntityName:@"Channel"
                                                predicateWithFormat:@"updatedAt <= %@", threeHoursAgo];
@@ -239,11 +253,6 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     NSURL *downloadURL = [NSURL URLWithString:urlString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:downloadURL];
     
-//    NSString *loginString = [NSString stringWithFormat:@"%@:%@", _userName, _password];
-//    NSString *encodedLoginData = [NSString encodeBase64WithString:loginString];
-//    NSString *loginHeader = [NSString stringWithFormat:@"Basic %@", encodedLoginData];
-    
-//    [request setValue:loginHeader forHTTPHeaderField:@"Authorization"];
     return request;
 }
 
@@ -294,7 +303,7 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
         [self processFeedFromFile:[destinationURL absoluteString] inContext:nil withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
             DLog(@"parse status: %d", bSuccess);
         }];
-        [self fetchLatestEntries];
+        [self fetchLatestEntriesInContext:self.givenContext];
     }
     else
     {

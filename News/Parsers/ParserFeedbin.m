@@ -11,6 +11,7 @@
 #import "NSObject+JL_KeyPathIntrospection.h"
 #import "ISO8601DateFormatter.h"
 #import "Tag.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @implementation ParserFeedbin
 

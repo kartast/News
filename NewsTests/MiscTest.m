@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "NSString+URLEncoding.h"
 #import "GoogleFeedsAPI.h"
+#import "TestHelper.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @interface MiscTest : XCTestCase
 
@@ -37,7 +39,6 @@
                                 @"&=*":@"%26%3D%2A"};
 
     [testCases enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        NSString *normalString = (NSString *)key;
         NSString *stringEncodedExpected = (NSString *)obj;
         NSString *stringEncoded = [key urlencode];
         XCTAssertTrue([stringEncoded isEqualToString:stringEncodedExpected], @"Expected: %@\nGot:%@", stringEncodedExpected, stringEncoded);
@@ -78,7 +79,14 @@
 }
 
 - (void)testAsyncTimeOut {
-    ASYNC_LOCK_INIT(4);
+    ASYNC_LOCK_INIT(6);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ sleep(5); ASYNC_LOCK_DONE(); });
+    ASYNC_LOCK_HERE();
+}
+
+- (void)testAsyncMultipleTimeout {
+    ASYNC_LOCK_INIT(5);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ sleep(3); ASYNC_LOCK_DONE(); });
     ASYNC_LOCK_HERE();
 }

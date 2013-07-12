@@ -10,6 +10,7 @@
 #import "Channel.h"
 #import "ParserFeedbin.h"
 #import "ParseSubscriptionOperation.h"
+#import "NSManagedObjectContext-EasyFetch.h"
 
 @interface ChannelTest : XCTestCase {
     NSPersistentStoreCoordinator *coord;

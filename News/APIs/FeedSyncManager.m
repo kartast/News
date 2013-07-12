@@ -42,7 +42,7 @@
     switch (syncType) {
         case FeedSyncTypeRSS:
         {
-            [[RSSFeedManager sharedManager] fetchLatestEntries];
+            [[RSSFeedManager sharedManager] fetchLatestEntriesInContext:[CoreDataHelper defaultContext]];
             [itemDetailFetcher startFetching];
         }
             break;

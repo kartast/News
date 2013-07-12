@@ -63,6 +63,7 @@
 		C79A241B178BDB7A00CB7E92 /* RSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A23FC178BCBD300CB7E92 /* RSSEntry.m */; };
 		C79A241C178BDB7A00CB7E92 /* RSSFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A23FE178BCBD300CB7E92 /* RSSFeed.m */; };
 		C79A241D178BDB7A00CB7E92 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A2401178BCBD300CB7E92 /* RSSParser.m */; };
+		C7AB8F5F178F9F1F0066BAC1 /* DisplayListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AB8F5D178F9F1B0066BAC1 /* DisplayListTest.m */; };
 		C7ADE8A2178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADE8A0178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m */; };
 		C7ADE8A3178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ADE8A1178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib */; };
 		C7ADE8A6178EC6F200B48793 /* MediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */; };
@@ -170,6 +171,7 @@
 		C79A2402178BCBD300CB7E92 /* SampleAtom_1.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleAtom_1.0.xml; sourceTree = "<group>"; };
 		C79A2403178BCBD300CB7E92 /* SampleRSS_2.0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleRSS_2.0.xml; sourceTree = "<group>"; };
 		C79A2415178BDAE700CB7E92 /* RSSTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSTest.m; sourceTree = "<group>"; };
+		C7AB8F5D178F9F1B0066BAC1 /* DisplayListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayListTest.m; sourceTree = "<group>"; };
 		C7ADE89F178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFeedsQueryPickerViewController.h; sourceTree = "<group>"; };
 		C7ADE8A0178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFeedsQueryPickerViewController.m; sourceTree = "<group>"; };
 		C7ADE8A1178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleFeedsQueryPickerViewController.xib; sourceTree = "<group>"; };
@@ -316,6 +318,8 @@
 				C748FB02178C5B9800B5E59F /* DIffBotTest.m */,
 				C732F3E8178D033C0095D380 /* MiscTest.m */,
 				C7E06650178D4AA200F44490 /* CoreDataRelationshipTest.m */,
+				C7AB8F5D178F9F1B0066BAC1 /* DisplayListTest.m */,
+				C7AB8F60178FA0C90066BAC1 /* ThirdParty */,
 				C771B66F178AA2B3007ADA69 /* Mock Data */,
 				C762EC1E17814C5700AF734E /* Frameworks */,
 				C762EC4517814C5700AF734E /* Supporting Files */,
@@ -370,6 +374,13 @@
 			);
 			path = RSSKit;
 			sourceTree = "<group>";
+		};
+		C7AB8F60178FA0C90066BAC1 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParty;
+			sourceTree = SOURCE_ROOT;
 		};
 		C7EA18F41782BAAB0008D816 /* ThirdParty */ = {
 			isa = PBXGroup;
@@ -637,6 +648,7 @@
 				C79A2418178BDB7A00CB7E92 /* NSMutableString+RSSKit.m in Sources */,
 				C732385C178BEF970009DA29 /* RSSFeedManager.m in Sources */,
 				C748FB03178C5B9800B5E59F /* DIffBotTest.m in Sources */,
+				C7AB8F5F178F9F1F0066BAC1 /* DisplayListTest.m in Sources */,
 				C79A241B178BDB7A00CB7E92 /* RSSEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

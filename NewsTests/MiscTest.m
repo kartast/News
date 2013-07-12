@@ -67,13 +67,19 @@
 }
 
 - (void)testGoogleFeedsQuery {
-    ASYNC_LOCK_INIT();
+    ASYNC_LOCK_INIT(5);
     [[GoogleFeedsAPI sharedManager] queryWithString:@"Daring Fireball" withCallback:^(BOOL bSuccess, NSArray* entryObjects) {
         if (bSuccess) {
             DLog(@"response:%@", entryObjects);
         }
         ASYNC_LOCK_DONE();
     }];
+    ASYNC_LOCK_HERE();
+}
+
+- (void)testAsyncTimeOut {
+    ASYNC_LOCK_INIT(4);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ sleep(3); ASYNC_LOCK_DONE(); });
     ASYNC_LOCK_HERE();
 }
 @end

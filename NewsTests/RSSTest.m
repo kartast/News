@@ -54,7 +54,7 @@
 
 #if TESTASYNC
 - (void)testRSSParsing {
-    ASYNC_LOCK_INIT();
+    ASYNC_LOCK_INIT(5);
     
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"SampleRSS_2.0"
                                                                           ofType:@"xml"];

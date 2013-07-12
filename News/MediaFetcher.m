@@ -7,18 +7,18 @@
 //
 
 #import "MediaFetcher.h"
-#import "ZSContextWatcher.h"
 #import "CoreDataHelper.h"
+#import "CoreDataHelper.h"
+#import "ItemDetail.h"
+#import "Item.h"
+#import "Channel.h"
+#import "DiffBotAPIManager.h"
 
 @implementation MediaFetcher
-@synthesize contextWatcher;
 
 - (id)init {
     if (self = [super init]) {
         mainContext = [CoreDataHelper defaultContext];
-        
-        // Monitor changes on the main context
-        self.contextWatcher = [[ZSContextWatcher alloc] initWithManagedObjectContext:mainContext];
     }
     return self;
 }

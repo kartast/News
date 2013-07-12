@@ -273,6 +273,10 @@
 		C762EC2717814C5700AF734E /* News */ = {
 			isa = PBXGroup;
 			children = (
+				C7ADE8A4178EC6F200B48793 /* MediaFetcher.h */,
+				C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */,
+				C7ADE8A7178ECBFA00B48793 /* ItemDetailFetcher.h */,
+				C7ADE8A8178ECBFA00B48793 /* ItemDetailFetcher.m */,
 				C7EA52C617868B5700E1304C /* ManagedObjects */,
 				C7EA52A71786894800E1304C /* APIs */,
 				C7EA52AC1786894800E1304C /* Parsers */,
@@ -282,10 +286,6 @@
 				C762EC3617814C5700AF734E /* Images.xcassets */,
 				C7EA18F41782BAAB0008D816 /* ThirdParty */,
 				C762EC2817814C5700AF734E /* Supporting Files */,
-				C7ADE8A4178EC6F200B48793 /* MediaFetcher.h */,
-				C7ADE8A5178EC6F200B48793 /* MediaFetcher.m */,
-				C7ADE8A7178ECBFA00B48793 /* ItemDetailFetcher.h */,
-				C7ADE8A8178ECBFA00B48793 /* ItemDetailFetcher.m */,
 			);
 			path = News;
 			sourceTree = "<group>";

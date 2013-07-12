@@ -39,6 +39,18 @@
         NSEntityDescription *ent = [NSEntityDescription entityForName:@"Item"
                                                inManagedObjectContext:context];
         item = [[Item alloc] initWithEntity:ent insertIntoManagedObjectContext:([bShouldInsert boolValue] ? context : nil)];
+        item.createdAt = [NSDate date];
+    }
+    return item;
+}
+
++ (id)findItemWithLink:(NSString *)url
+             inContext:(NSManagedObjectContext *)context
+          shouldInsert:(NSNumber *)bShouldInsert {
+    NSArray *array = [context fetchObjectsForEntityName:@"Item" predicateWithFormat:@"link = %@", url];
+    Item *item = nil;
+    if ([array count] > 0) {
+        item = [array objectAtIndex:0];
     }
     return item;
 }

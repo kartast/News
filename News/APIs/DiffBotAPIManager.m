@@ -145,6 +145,12 @@ NSMutableArray *downloadTasks;
         NSString *bodyEncoded = [requestDict valueForKey:@"body"];
         NSString *bodyDecoded = [bodyEncoded urlDecode];
         NSData *data = [bodyDecoded dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        if (data == nil ) {
+            data = [bodyEncoded dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        }
+        if (data == nil) {
+            continue;
+        }
         NSDictionary *bodyDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         // TODO: Check for errorCode
         // What to do if got errorCode?

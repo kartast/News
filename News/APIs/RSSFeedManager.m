@@ -160,6 +160,7 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
             item.pubDate = date;
             item.createdAt = [NSDate date];
             item.author = article.author;
+            item.channel = channel;
         }
         
     }

@@ -42,6 +42,11 @@
         itemDetail = [[ItemDetail alloc] initWithEntity:ent
                          insertIntoManagedObjectContext:([bShouldInsert boolValue] ? context : nil)];
         itemDetail.url = url;
+        
+        Item *item = [Item findItemWithLink:url inContext:context shouldInsert:NO];
+        if (item) {
+            itemDetail.item = item;
+        }
     }
     return itemDetail;
 }

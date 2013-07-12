@@ -8,13 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZSContextWatcher;
-@interface ItemDetailFetcher : NSObject {
-    ZSContextWatcher *contextWatcher;
+@interface ItemDetailFetcher : NSObject <NSFetchedResultsControllerDelegate> {
     NSManagedObjectContext *mainContext;
     NSManagedObjectContext *tempContext;
+    NSFetchedResultsController *fetchedResultsController;
 }
-
-@property (nonatomic, retain) ZSContextWatcher *contextWatcher;
-
+- (void)startFetching;
 @end

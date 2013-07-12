@@ -32,4 +32,8 @@
         inContext:(NSManagedObjectContext *)context
      shouldInsert:(NSNumber *)bShouldInsert;
 
++ (id)findItemWithLink:(NSString *)url
+             inContext:(NSManagedObjectContext *)context
+          shouldInsert:(NSNumber *)bShouldInsert;
+
 @end

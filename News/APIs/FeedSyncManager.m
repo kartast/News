@@ -10,6 +10,7 @@
 #import "FeedBinAPI.h"
 #import "CoreDataHelper.h"
 #import "RSSFeedManager.h"
+#import "ItemDetailFetcher.h"
 
 @implementation FeedSyncManager
 @synthesize syncType;
@@ -26,6 +27,7 @@
 - (id)init {
     if (self = [super init]) {
         syncType = FeedSyncTypeRSS;
+        itemDetailFetcher = [[ItemDetailFetcher alloc] init];
     }
     return self;
 }
@@ -41,6 +43,7 @@
         case FeedSyncTypeRSS:
         {
             [[RSSFeedManager sharedManager] fetchLatestEntries];
+            [itemDetailFetcher startFetching];
         }
             break;
         case FeedSyncTypeFeedbin:

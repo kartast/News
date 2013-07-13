@@ -20,6 +20,7 @@
 #import "Tag.h"
 #import "UIImageView+WebCache.h"
 #import "FeedCell.h"
+#import "DebugCell.h"
 
 @interface SimpleTableViewController ()
 
@@ -97,7 +98,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[fetchResultsController sections] objectAtIndex:section] numberOfObjects];
+    return [[[fetchResultsController sections] objectAtIndex:section] numberOfObjects]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,25 +107,30 @@
     if (cell == nil) {
         [self.tableView registerNib:[UINib nibWithNibName:@"feedCell" bundle:nil] forCellReuseIdentifier:@"feedCell"];
         cell = (FeedCell*)[self.tableView dequeueReusableCellWithIdentifier:@"feedCell"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    // Debug cell
+    int nTotalFetchedObjectsPlusDebugCell = [[fetchResultsController fetchedObjects] count]+1;
+    if ([indexPath row] == (nTotalFetchedObjectsPlusDebugCell-1) ) {
+        // last row
+        DebugCell *debugCell = (DebugCell *)[self.tableView dequeueReusableCellWithIdentifier:@"debugCell"];
+        if (debugCell == nil) {
+            [self.tableView registerNib:[UINib nibWithNibName:@"DebugCell" bundle:nil] forCellReuseIdentifier:@"debugCell"];
+            debugCell = (DebugCell*)[self.tableView dequeueReusableCellWithIdentifier:@"debugCell"];
+            [debugCell setDelegate:self];
+        }
+        
+        return debugCell;
     }
     DisplayList *displayItem = [fetchResultsController objectAtIndexPath:indexPath];
     NSString* imageURL = [displayItem displayImage];
     if ([displayItem displayListType] == DisplayListFeed) {
         Channel *channel = displayItem.feed;
         [cell setTitle:channel.title andImageURL:imageURL];
-//        UILabel* titleLabel = (UILabel*)[cell viewWithTag:100];
-//        UIImageView* imageView = (UIImageView*)[cell viewWithTag:101];
-//        if (imageURL) {
-//            [imageView setImageWithURL:[NSURL URLWithString:imageURL]
-//                           placeholderImage:[UIImage imageNamed:nil]];
-//        }
-//        titleLabel.text = channel.title;
     }else {
         Tag *tag = displayItem.tag;
         Channel *channel = [tag.channels anyObject];
         UILabel* titleLabel = (UILabel*)[cell viewWithTag:100];
-        UIImageView* imageView = (UIImageView*)[cell viewWithTag:101];
         titleLabel.text = channel.title;
     }
     return  cell;
@@ -142,6 +148,16 @@
 }
 
 #pragma buttons
+- (void)debugBtn1Pressed {
+    DLog(@"debug button 1 pressed");
+    SimpleFeedsQueryPickerViewController *feedsQueryVC = [[SimpleFeedsQueryPickerViewController alloc] init];
+    [self presentViewController:feedsQueryVC animated:YES completion:nil];
+}
+
+- (void)debugBtn2Pressed {
+    DLog(@"debug button 2 pressed");
+}
+
 - (IBAction)addTestFeed:(id)sender {
     
 //    [[RSSFeedManager sharedManager] addFeedByURL:@"http://daringfireball.net/index.xml"

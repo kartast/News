@@ -28,6 +28,7 @@ typedef void (^RSSFeedAddingCallback)(BOOL, RSSFeed *, NSError *);
         withCallback:(RSSFeedAddingCallback)callback
            inContext:(NSManagedObjectContext *)context;
 - (void)processFeedFromFile:(NSString *)filePath
+                    withURL:(NSString *)feedURL
                   inContext:(NSManagedObjectContext *)context
                withCallback:(RSSFeedAddingCallback)callback;
 @end

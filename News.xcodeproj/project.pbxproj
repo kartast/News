@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C712146417917F7900D341E1 /* DebugCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C712146317917F7900D341E1 /* DebugCell.m */; };
+		C712146617917F8900D341E1 /* DebugCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C712146517917F8900D341E1 /* DebugCell.xib */; };
 		C71C8D26178D9A0B0079978F /* GoogleFeedsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C71C8D25178D9A0B0079978F /* GoogleFeedsAPI.m */; };
 		C72310FE178BB1F300A8D7BA /* feedbinTaggingsNews.json in Resources */ = {isa = PBXBuildFile; fileRef = C72310FC178BB1F300A8D7BA /* feedbinTaggingsNews.json */; };
 		C72310FF178BB1F300A8D7BA /* feedbinTaggingsTech.json in Resources */ = {isa = PBXBuildFile; fileRef = C72310FD178BB1F300A8D7BA /* feedbinTaggingsTech.json */; };
@@ -129,6 +131,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C712146217917F7900D341E1 /* DebugCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugCell.h; sourceTree = "<group>"; };
+		C712146317917F7900D341E1 /* DebugCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugCell.m; sourceTree = "<group>"; };
+		C712146517917F8900D341E1 /* DebugCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugCell.xib; sourceTree = "<group>"; };
 		C71C8D24178D9A0B0079978F /* GoogleFeedsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleFeedsAPI.h; sourceTree = "<group>"; };
 		C71C8D25178D9A0B0079978F /* GoogleFeedsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleFeedsAPI.m; sourceTree = "<group>"; };
 		C72310FC178BB1F300A8D7BA /* feedbinTaggingsNews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feedbinTaggingsNews.json; sourceTree = "<group>"; };
@@ -625,6 +630,9 @@
 				C7C1A82417903987005B3150 /* feedCell.xib */,
 				C7C1A859179042C4005B3150 /* FeedCell.h */,
 				C7C1A85A179042C4005B3150 /* FeedCell.m */,
+				C712146517917F8900D341E1 /* DebugCell.xib */,
+				C712146217917F7900D341E1 /* DebugCell.h */,
+				C712146317917F7900D341E1 /* DebugCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -733,6 +741,7 @@
 				C7ADE8A3178DA2BB00B48793 /* SimpleFeedsQueryPickerViewController.xib in Resources */,
 				C7EA52C21786894800E1304C /* SimpleTableViewController.xib in Resources */,
 				C79A2405178BCBD300CB7E92 /* RSS.png in Resources */,
+				C712146617917F8900D341E1 /* DebugCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +802,7 @@
 				C7EA52BB1786894800E1304C /* FeedBinAPI.m in Sources */,
 				C762EC3217814C5700AF734E /* AppDelegate.m in Sources */,
 				C7ADE8A6178EC6F200B48793 /* MediaFetcher.m in Sources */,
+				C712146417917F7900D341E1 /* DebugCell.m in Sources */,
 				C7EA52BD1786894800E1304C /* ParseOperation.m in Sources */,
 				C7EA19001782BB8D0008D816 /* NSString+Base64.m in Sources */,
 				C7C1A84C17903F20005B3150 /* NSData+GIF.m in Sources */,

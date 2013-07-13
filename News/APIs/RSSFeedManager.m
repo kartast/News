@@ -88,6 +88,7 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     Background downloading returns filePath, use this to process file
  */
 - (void)processFeedFromFile:(NSString *)filePath
+                    withURL:(NSString *)feedURL
                   inContext:(NSManagedObjectContext *)context
                withCallback:(RSSFeedAddingCallback)callback {
     
@@ -103,9 +104,9 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
         } else {
             
         }
-        NSData *rssData = [NSData dataWithContentsOfFile:filePath];
+        NSData *rssData = [NSData dataWithContentsOfURL:[NSURL URLWithString:filePath]];
         RSSParser *parser = [[RSSParser alloc] init];
-        [parser parseData:rssData withCallback:^(RSSParser *parser, RSSFeed *feed, NSError *error) {
+        [parser parseData:rssData withURL:feedURL withCallback:^(RSSParser *parser, RSSFeed *feed, NSError *error) {
             if (error) {
                 // TODO: Remember fail how many times, if too many times,
                 // then dont fetch too often
@@ -128,11 +129,12 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
                         inContext:(NSManagedObjectContext *)context {
     // TODO: validate feed
     // Channel
-    Channel *channel = [Channel channelWithURL:feed.url inContext:context shouldInsert:@YES];
+    Channel *channel = [Channel channelWithURL:feed.urlSelf inContext:context shouldInsert:@YES];
     if (channel.title) {
         // just update necessary info
         [channel setTitle:feed.title];
         [channel setFeedDescription:feed.description];
+        [channel setUpdatedAt:[NSDate date]];
     }else {
         [channel setTitle:feed.title];
         [channel setFeedDescription:feed.description];
@@ -207,9 +209,9 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     NSDate *threeHoursAgo = [NSDate dateWithTimeIntervalSinceNow:kSecondsChannelUpdated];
     NSArray *channelsToUpdate = [context fetchObjectsForEntityName:@"Channel"
                                                predicateWithFormat:@"updatedAt <= %@", threeHoursAgo];
-    
+    DLog(@"");
     [self getDownloadTasksCount:^(int currentDownloadingCount) {
-        if ([channelsToUpdate count] > currentDownloadingCount) {
+        if ([channelsToUpdate count] > currentDownloadingCount && [channelsToUpdate count] != 0 && kMaxChannelSimultaneousFetchCount > currentDownloadingCount) {
             Channel *channelToFetchNext = [channelsToUpdate objectAtIndex:currentDownloadingCount];
             callback(channelToFetchNext);
         }else {
@@ -220,7 +222,8 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
 
 #pragma mark -- background downloading
 - (void)downloadTaskFinishForID:(int)taskID {
-    for (NSURLSessionDownloadTask *task in downloadTasks) {
+    NSMutableArray *downloadTasksCopy = [[NSMutableArray alloc] initWithArray:downloadTasks];
+    for (NSURLSessionDownloadTask *task in downloadTasksCopy) {
         if ([task taskIdentifier] == taskID) {
             [downloadTasks removeObject:task];
         }
@@ -240,6 +243,7 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     NSURLRequest *request = [self requestForURL:feedURL];
     NSURLSessionDownloadTask *downloadTask = [[self backgroundSession] downloadTaskWithRequest:request];
     [downloadTask setTaskDescription:feedURL];
+    [downloadTask resume];
     
     [self.downloadTasks addObject:downloadTask];
 }
@@ -300,7 +304,8 @@ static const int kMaxChannelSimultaneousFetchCount = 3;
     
     if (success)
     {
-        [self processFeedFromFile:[destinationURL absoluteString] inContext:nil withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
+        // Need to pass in the rss url
+        [self processFeedFromFile:[destinationURL absoluteString] withURL:[downloadTask taskDescription] inContext:nil withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
             DLog(@"parse status: %d", bSuccess);
         }];
         [self fetchLatestEntriesInContext:self.givenContext];

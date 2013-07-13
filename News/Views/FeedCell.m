@@ -49,6 +49,7 @@
                                   CGRect frame = imgView.frame;
                                   frame.size.width = fNewWidth;
                                   frame.size.height = fNewHeight;
+                                  frame.origin.x = 0.0;
                                   frame.origin.y =  -(frame.size.height/2.0)+(cellHeight/2.0);
                                   imgView.frame = frame;
                                   
@@ -59,8 +60,8 @@
                                   
                                   UIInterpolatingMotionEffect *mx2 = [[UIInterpolatingMotionEffect alloc]
                                                                       initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-                                  mx2.maximumRelativeValue = @-39.0;
-                                  mx2.minimumRelativeValue = @39.0;
+                                  mx2.maximumRelativeValue = @-10;
+                                  mx2.minimumRelativeValue = @10;
                                   
                                   //Make sure yourView's bounds are beyond the canvas viewport - because it's being moved by values.
                                   

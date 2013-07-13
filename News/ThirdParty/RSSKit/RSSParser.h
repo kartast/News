@@ -25,6 +25,7 @@ typedef void (^RSSParserCompletionBlock)(RSSParser*, RSSFeed*, NSError *);
 	RSSEntry *entry;
 	id <RSSParserDelegate> delegate;
     RSSParserCompletionBlock completionBlock;
+    NSString *feedURL;
 }
 
 @property (copy) RSSParserCompletionBlock completionBlock;
@@ -36,8 +37,7 @@ typedef void (^RSSParserCompletionBlock)(RSSParser*, RSSFeed*, NSError *);
 - (id) initWithUrl:(NSString *)theUrl;
 - (void)parse;
 - (void)parseWithCompletionCallback:(RSSParserCompletionBlock) block;
-- (void)parseData:(NSData *)rssData withCallback:(RSSParserCompletionBlock) block;
-
+- (void)parseData:(NSData *)rssData withURL:(NSString *)givenFeedURL withCallback:(RSSParserCompletionBlock) block;
 @end
 
 

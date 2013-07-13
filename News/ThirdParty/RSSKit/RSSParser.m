@@ -68,7 +68,8 @@
     }
 }
 
-- (void)parseData:(NSData *)rssData withCallback:(RSSParserCompletionBlock) block {
+- (void)parseData:(NSData *)rssData withURL:(NSString *)givenFeedURL withCallback:(RSSParserCompletionBlock) block {
+    feedURL = givenFeedURL;
     self.completionBlock = block;
     xmlParser = [[NSXMLParser alloc] initWithData:rssData];
     [xmlParser setDelegate:self];
@@ -95,6 +96,9 @@
 
 - (void) parserDidEndDocument:(NSXMLParser *)parser {
     if (self.completionBlock) {
+        if (feedURL) {
+            feed.urlSelf = feedURL;
+        }
         self.completionBlock(self, feed, nil);
     }
 	else if ([delegate respondsToSelector:@selector(rssParser:parsedFeed:)]) {

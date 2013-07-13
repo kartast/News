@@ -60,21 +60,27 @@ NSMutableArray *downloadTasks;
     }
     
     if ([urls count]>0) {
-        NSString *urlPostData = [self generatePostParamsFromUrls:urls];
-        NSMutableURLRequest *urlRequest = [self articleRequestWithBatchPostData:urlPostData];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                              delegate:self
-                                                         delegateQueue:[NSOperationQueue mainQueue]];
+        [self sendAPIForURLs:urls];
         
-        NSURLSessionDataTask *dataTask =
-            [session dataTaskWithRequest:urlRequest
-                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                           [self processResponse:data fromURLs:urls];
-                        }];
-        
-        [downloadTasks addObject:dataTask];
-        [dataTask resume];
     }
+}
+
+- (void)sendAPIForURLs:(NSArray*)urls {
+    NSString *urlPostData = [self generatePostParamsFromUrls:urls];
+    
+    NSMutableURLRequest *urlRequest = [self articleRequestWithBatchPostData:urlPostData];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:self
+                                                     delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURLSessionDataTask *dataTask =
+    [session dataTaskWithRequest:urlRequest
+               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                   [self processResponse:data fromURLs:urls];
+               }];
+    
+    [downloadTasks addObject:dataTask];
+    [dataTask resume];
 }
 
 /*
@@ -131,6 +137,7 @@ NSMutableArray *downloadTasks;
      */
     NSError *error = nil;
     if (data == nil) {
+        [self sendAPIForURLs:URLs];// retry
         return;
     }
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data

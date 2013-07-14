@@ -62,7 +62,7 @@
     NSData *rssSampleData = [NSData dataWithContentsOfFile:filePath];
     
     RSSParser *parser = [[RSSParser alloc] init];
-    [parser parseData:rssSampleData withCallback:^(RSSParser *rssParser, RSSFeed *rssFeed, NSError *error ) {
+    [parser parseData:rssSampleData withURL:@"http://localhost" withCallback:^(RSSParser *rssParser, RSSFeed *rssFeed, NSError *error ) {
         XCTAssertNil(error, @"Error parsing :%@", error);
         XCTAssertNotNil(rssFeed, @"Feed returned empty");
         
@@ -97,6 +97,7 @@
 - (void)testAddChannelFromFilePath {
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"DaringFireballFeed" ofType:@"xml"];
     [[RSSFeedManager sharedManager] processFeedFromFile:filePath
+                                                withURL:@"http://localhost"
                                               inContext:ctx
                                            withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
                                                 XCTAssertNil(error, @"error adding feed: %@", error);
@@ -112,6 +113,7 @@
 - (void)testRemoveChannelByURL {
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"DaringFireballFeed" ofType:@"xml"];
     [[RSSFeedManager sharedManager] processFeedFromFile:filePath
+                                                withURL:@"http://localhost"
                                               inContext:ctx
                                            withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
                                                XCTAssertNil(error, @"error adding feed: %@", error);

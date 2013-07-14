@@ -12,7 +12,7 @@
 #import "CoreDataHelper.h"
 
 static const NSString *kTokenDiffBot = @"2532d012268a7d8c7ddad11c734710ee";
-static const NSString *kDiffBotAPIURL = @"http://www.diffbot.com/api/batch";
+static const NSString *kDiffBotAPIURL = @"http://localhost:8080/api/batch";
 static const int kMaxConnection = 5;
 
 NSMutableArray *urlQueue;
@@ -66,7 +66,7 @@ NSMutableArray *downloadTasks;
 }
 
 - (void)sendAPIForURLs:(NSArray*)urls {
-    NSString *urlPostData = [self generatePostParamsFromUrls:urls];
+    NSString *urlPostData = [self generateAlternatePostParamsFromUrls:urls];
     
     NSMutableURLRequest *urlRequest = [self articleRequestWithBatchPostData:urlPostData];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
@@ -99,6 +99,22 @@ NSMutableArray *downloadTasks;
     for (NSString *url in URLs) {
         NSString *urlEncodedString = [NSString stringWithFormat:@"/api/article?url=%@%%26token=%@%%26html=true%%26summary=true", [url urlencode], kTokenDiffBot];
         NSString *apiString = [NSString stringWithFormat:@"{\"method\": \"GET\", \"relative_url\": \"%@\"},", urlEncodedString];
+        [string appendString:apiString];
+    }
+    
+    // remove last comma
+    [string deleteCharactersInRange:NSMakeRange([string length]-1, 1)];
+    [string appendFormat:@"]"];
+    return  string;
+}
+
+- (NSString *)generateAlternatePostParamsFromUrls:(NSArray *)URLs {
+    NSMutableString *string = [[NSMutableString alloc] init];
+    [string appendFormat:@"token=%@&batch=[", kTokenDiffBot];
+    
+    for (NSString *url in URLs) {
+        NSString *urlEncodedString = [NSString stringWithFormat:@"\"%@", [url urlencode]];
+        NSString *apiString = [NSString stringWithFormat:@"%@\",", urlEncodedString];
         [string appendString:apiString];
     }
     

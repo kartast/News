@@ -59,6 +59,7 @@
     
     [[RSSFeedManager sharedManager]
         processFeedFromFile:filePath
+                    withURL:@"http://localhost"
                   inContext:ctx
                withCallback:^(BOOL bSuccess, RSSFeed *feed, NSError *error) {
                    XCTAssertNil(error, @"error adding feed: %@", error);

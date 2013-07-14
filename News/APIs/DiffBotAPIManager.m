@@ -12,7 +12,7 @@
 #import "CoreDataHelper.h"
 
 static const NSString *kTokenDiffBot = @"2532d012268a7d8c7ddad11c734710ee";
-static const NSString *kDiffBotAPIURL = @"http://localhost:8080/api/batch";
+static const NSString *kDiffBotAPIURL = @"http://diffbot_cache.nodejitsu.com/api/batch";
 static const int kMaxConnection = 5;
 
 NSMutableArray *urlQueue;
@@ -72,10 +72,13 @@ NSMutableArray *downloadTasks;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                           delegate:self
                                                      delegateQueue:[NSOperationQueue mainQueue]];
-    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [config setTimeoutIntervalForRequest:60];
     NSURLSessionDataTask *dataTask =
     [session dataTaskWithRequest:urlRequest
                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                   NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                   DLog(@"%@", dataString);
                    [self processResponse:data fromURLs:urls];
                }];
     
@@ -165,9 +168,23 @@ NSMutableArray *downloadTasks;
         // TODO: handle json error
     }
     
+    if ([jsonArray isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *jsonDict = (NSDictionary*)jsonArray;
+        NSNumber *status = [jsonDict objectForKey:@"status"];
+        if (![status isEqualToNumber:@200]) {
+            [self sendAPIForURLs:URLs];
+            return;
+        }
+    }
+    
     NSLog(@"%@", jsonArray);
     for (NSDictionary *requestDict in jsonArray) {
         // body response is urlEncoded
+        NSNumber *statusCode = [requestDict valueForKey:@"statusCode"];
+        if (![statusCode isEqualToNumber:@200]) {
+            continue;
+        }
+        NSString *url = [requestDict valueForKey:@"url"];
         NSString *bodyEncoded = [requestDict valueForKey:@"body"];
         NSString *bodyDecoded = [bodyEncoded urlDecode];
         NSData *data = [bodyDecoded dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
@@ -184,11 +201,8 @@ NSMutableArray *downloadTasks;
             got error code means that the article fetching has failed, get the url
             !!just skip because the url returned is not the same
          */
-        
         ItemDetail *itemDetail = [ItemDetail itemDetailFromResponseDict:bodyDict inContext:context shouldInsert:@YES];
-        if (itemDetail != nil) {
-            [urlsAnalyzedSuccess addObject:itemDetail.url];
-        }
+        [urlsAnalyzedSuccess addObject:url];
         DLog(@"%@", bodyDict);
     }
     
